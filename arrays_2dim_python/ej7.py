@@ -106,26 +106,26 @@ def print_max_mark_module():
         case 'PROGRAMACIÓN':
             maximum = 0
             for i in range(len(students)):
-                if maximum > float(students[i][1]):
-                    maximum = students
+                if maximum < students[i][1]:
+                    maximum = students[i][1]
             print(f'La nota máxima de la asignatura {module} es de: {maximum}')
         case 'LENGUAJE DE MARCAS':
             maximum = 0
             for i in range(len(students)):
-                if maximum > float(students[i][2]):
-                    maximum = students
+                if maximum < students[i][2]:
+                    maximum = students[i][2]
             print(f'La nota máxima de la asignatura {module} es de: {maximum}')
         case 'BASE DE DATOS':
             maximum = 0
             for i in range(len(students)):
-                if maximum > float(students[i][3]):
-                    maximum = students
+                if maximum < students[i][3]:
+                    maximum = students[i][3]
             print(f'La nota máxima de la asignatura {module} es de: {maximum}')
         case 'SISTEMAS INFORMÁTICOS':
             maximum = 0
             for i in range(len(students)):
-                if maximum > float(students[i][4]):
-                    maximum = students
+                if maximum < students[i][4]:
+                    maximum = students[i][4]
             print(f'La nota máxima de la asignatura {module} es de: {maximum}')
 
 
@@ -134,29 +134,29 @@ def print_min_mark_module():
     module = input('\nIntroduce el módulo del cual se desea mostrar la nota mínima: ')
     match module:
         case 'PROGRAMACIÓN':
-            minimum = 0
+            minimum = 10
             for i in range(len(students)):
-                if minimum < students[i][1]:
-                    minimum = students
+                if minimum > students[i][1]:
+                    minimum = students[i][1]
             print(f'La nota mínima de la asignatura {module} es de: {minimum}')
         case 'LENGUAJES DE MARCAS':
-            minimum = 0
+            minimum = 10
             for i in range(len(students)):
-                if minimum < students[i][2]:
-                    minimum = students
+                if minimum > students[i][2]:
+                    minimum = students[i][2]
             print(f'La nota mínima de la asignatura {module} es de: {minimum}')
         case 'BASES DE DATOS':
-            minimum = 0
+            minimum = 10
             for i in range(len(students)):
-                if minimum < students[i][3]:
-                    minimum = students
+                if minimum > students[i][3]:
+                    minimum = students[i][3]
             print(f'La nota mínima de la asignatura {module} es de: {minimum}')
         case 'SISTEMAS INFORMÁTICOS':
-            minimum = 0
+            minimum = 10
             for i in range(len(students)):
                 print(students[i][4])
-                if minimum < students[i][4]:
-                    minimum = students
+                if minimum > students[i][4]:
+                    minimum = students[i][4]
             print(f'La nota mínima de la asignatura {module} es de: {minimum}')
 
 
@@ -165,56 +165,44 @@ def print_students_sorted():
     module = input('\nIntroduce el módulo del cual se desea mostrar las notas de mayor a menor: ')
     match module:
         case 'PROGRAMACIÓN':
-            array_marks = []
+            pos_module = 1
             array_sorted = []
             for i in range(len(students)):
-                array_marks.append(students[i][1])
-            array_marks.sort(reverse=True)
-
-            for i in range(len(students)):
-                for j in range(len(students)):
-                    if array_marks[i] == students[j]:
-                        array_sorted.append(students[j])
+                name = students[i][pos_module]
+                array_sorted.append(name)
+            array_sorted.sort(reverse=True)
             print(array_sorted)
+
         case 'LENGUAJES DE MARCAS':
-            array_marks = []
+            pos_module = 2
             array_sorted = []
             for i in range(len(students)):
-                array_marks.append(students[i][3])
-            array_marks.sort(reverse=True)
-
-            for i in range(len(students)):
-                for j in range(len(students)):
-                    if array_marks[i] == students[j]:
-                        array_sorted.append(students[j])
+                name = students[i][pos_module]
+                array_sorted.append(name)
+            array_sorted.sort(reverse=True)
             print(array_sorted)
+
         case 'BASES DE DATOS':
-            array_marks = []
+            pos_module = 3
             array_sorted = []
             for i in range(len(students)):
-                array_marks.append(students[i][3])
-            array_marks.sort(reverse=True)
-
-            for i in range(len(students)):
-                for j in range(len(students)):
-                    if array_marks[i] == students[j]:
-                        array_sorted.append(students[j])
+                name = students[i][pos_module]
+                array_sorted.append(name)
+            array_sorted.sort(reverse=True)
             print(array_sorted)
+
         case 'SISTEMAS INFORMÁTICOS':
-            array_marks = []
+            pos_module = 4
             array_sorted = []
             for i in range(len(students)):
-                array_marks.append(students[i][4])
-            array_marks.sort(reverse=True)
-
-            for i in range(len(students)):
-                for j in range(len(students)):
-                    if array_marks[i] == students[j]:
-                        array_sorted.append(students[j])
+                name = students[i][pos_module]
+                array_sorted.append(name)
+            array_sorted.sort(reverse=True)
+            print(array_sorted)
 
 
 def exit_code():
-    print('Has salido del progranma con éxito. ', file=sys.stderr)
+    print('Has salido del programa con éxito. ', file=sys.stderr)
     sys.exit(1)
 
 
