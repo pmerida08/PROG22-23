@@ -31,25 +31,6 @@ Esta clase tiene que tener, al menos, los siguientes métodos:
 from typeguard import typechecked
 from movement import Movement as Move
 from datetime import datetime
-from menu import Menu
-
-
-def main():
-    menu = Menu("Entrada de caja (con la fecha y hora actual).", "Salida de caja (con la fecha y hora actual).",
-                "Borrado del último movimiento de la caja.", "Impresión de la caja.", title = "Caja Registradora")
-
-    cash_register = CashRegister()
-
-    while True:
-        opc = menu.choose()
-        match opc:
-            case 1: cash_register.add()
-            case 2: cash_register.add()
-            case 3: cash_register.delete_last()
-            case 4: print(cash_register)
-            case _: break
-    print("Hasta la próxima! :-)")
-
 
 @typechecked
 class CashRegister:
@@ -58,10 +39,7 @@ class CashRegister:
         self.__registered = []
         self.__balance = 0
 
-    def add(self, date_time= datetime.now(None)):
-        amount = float(input('Introduce la cantidad de dinero a introducir: '))
-        concept = input('Introduce el concepto del movimiento: ')
-        print()
+    def add(self, amount: float, concept: str, date_time= datetime.now()):
         m = Move(amount=amount, concept=concept, date_time=date_time)
         self.__registered.append(m)
         self.__balance += m.amount
@@ -69,7 +47,7 @@ class CashRegister:
             print(f'Has cogido de la caja registradora: {abs(m.amount)} €')
         else:
             print(f'Has añadido de la caja registradora: {m.amount} €')
-        print(f'Ahora la caja registradora tiene: {self.__balance} €')
+        print(f'Ahora la caja registradora tiene: {self.__balance:.2f} €')
 
     def delete_last(self):
         move_deleted = self.__registered[-1]
@@ -90,6 +68,3 @@ class CashRegister:
     @balance.setter
     def balance(self, value):
         self.__balance = value
-
-if __name__ == '__main__':
-    main()

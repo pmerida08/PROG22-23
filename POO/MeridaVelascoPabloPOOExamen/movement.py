@@ -22,7 +22,7 @@ class Movement:
 
     last_number = 1
 
-    def __init__(self, amount: float, concept:str ,date_time: datetime):
+    def __init__(self, amount: float, concept:str ,date_time: datetime.now()):
         self.__date_time = date_time
         self.__amount = amount
         self.__concept = concept

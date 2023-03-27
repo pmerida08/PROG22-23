@@ -42,5 +42,3 @@ while True:
     else:
         print(f'No es {in_english}. Vuelve a intentarlo')
         continue
-
-
