@@ -91,13 +91,9 @@ class Cart:
         self.total_cost = 0
 
     def add(self, element: Element):
-        if element.name in self.elements:
-            self.number_elements += element.amount
-            self.total_cost += element.price
-        else:
-            self.elements.append(element)
-            self.number_elements += element.amount
-            self.total_cost += element.price
+        self.elements.append(element)
+        self.number_elements += element.amount
+        self.total_cost += element.price
 
     def __str__(self):
         return f'{self.elements}'
