@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Pregunta 1",
+    "statement": "¿Qué son los mamíferos?",
+    "options": [
+      [
+        "Seres vivos",
+        2
+      ],
+      [
+        "Plantas",
+        -0.25
+      ],
+      [
+        "Insectos",
+        -0.25
+      ],
+      [
+        "Partido político",
+        -0.25
+      ]
+    ],
+    "base_pointed": 1
+  },
+
+  {
+    "name": "Pregunta 2",
+    "statement": "¿En qué meridiano está España?",
+    "options": [
+      [
+        "M. magnético",
+        -0.25
+      ],
+      [
+        "M. de Greenwich",
+        2
+      ],
+      [
+        "M. cero",
+        -0.25
+      ],
+      [
+        "Ecuador",
+        -0.25
+      ]
+    ],
+    "base_pointed": 1
+  },
+
+  {
+    "name": "Pregunta 3",
+    "statement": "¿Cuál es la capital de Marruecos?",
+    "options": [
+      [
+        "Ceuta",
+        -0.25
+      ],
+      [
+        "Melilla",
+        -0.25
+      ],
+      [
+        "Rabat",
+        2
+      ],
+      [
+        "Marrakech",
+        -0.25
+      ]
+    ],
+    "base_pointed": 1
+  },
+
+  {
+    "name": "Pregunta 4",
+    "statement": "¿En qué año murió Francisco Franco?",
+    "options": [
+      [
+        "1976",
+        -0.25
+      ],
+      [
+        "1973",
+        -0.25
+      ],
+      [
+        "1978",
+        -0.25
+      ],
+      [
+        "1975",
+        2
+      ]
+    ],
+    "base_pointed": 1
+  },
+
+  {
+    "name": "Pregunta 5",
+    "statement": "¿Cuál fue el primer programador/a?",
+    "options": [
+      [
+        "Ada Lovelace",
+        2
+      ],
+      [
+        "von Neumann",
+        -0.25
+      ],
+      [
+        "Peter Griffin",
+        -0.25
+      ],
+        "Bill Gates",
+        -0.25
+      ],
+    "base_pointed": 1
+  }
+]

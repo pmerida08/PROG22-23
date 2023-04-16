@@ -1,0 +1,22 @@
+q1
+¿Qué son los mamíferos?
+Seres vivos
+2
+Plantas
+-0.25
+Insectos
+-0.25
+Partido político
+-0.25
+---
+q2
+¿En qué meridiano está España?
+M. magnético
+-0.25
+M. de Greenwich
+2
+M. cero
+-0.25
+Ecuador
+-0.25
+---

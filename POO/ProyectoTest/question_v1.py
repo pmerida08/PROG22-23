@@ -1,9 +1,5 @@
 from typeguard import typechecked
 
-
-
-
-
 @typechecked
 class Question:
     __BASE_POINTS_MAX = 2
@@ -15,6 +11,7 @@ class Question:
         self.__elections = elections
         self.__base_pointed = base_pointed
         Question.__number_quests += 1
+
     @property
     def enunciate(self):
         return self.__enunciate
