@@ -39,15 +39,9 @@ class Question:
                 print(f'La puntuación obtenida es de {score} puntos \n')
 
     @staticmethod
-    def remove_content():
-        with open('D:\Programas\PROG\POO\ProyectoTest\questions.txt', 'rt', encoding='utf-8') as file:
-            file.truncate(0)
-
-
-    @staticmethod
     def show():
         with open('D:\Programas\PROG\POO\ProyectoTest\questions.txt', 'rt', encoding='utf-8') as file:
-            file.readline()
+            file.readline() # saltamos la primera línea que es el nombre 'q1', 'q2',...
             line = file.readline()
             n = 1
 
@@ -87,5 +81,3 @@ if __name__ == '__main__':
 
     q5.show()
     q5.answer()
-
-    Question.remove_content()
