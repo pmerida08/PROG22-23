@@ -54,7 +54,7 @@ class Cart:
         self.number_elements = 0
         self.total_cost = 0
 
-    def add(self, element: Element): # ???
+    def add(self, element: Element):
         for e in range(len(self.elements)):
             if element.name in self.elements[e]:
                 self.number_elements += element.amount

@@ -1,5 +1,3 @@
-import pickle
-
 """
 2. Escribe un programa que sea capaz de leer el fichero anterior y lo muestre por la pantalla.
 
@@ -25,10 +23,11 @@ for n in range(1, 501):
     if is_prime(n):
         primes_numbers.append(n)
 
-with open('D:\\Programas\\PROG\\POO\\MeridaVelascoPabloPOOFicheros\\ej01primos\\primos.txt', 'wt') as file:
+with open('D:\Programas\PROG\POO\MeridaVelascoPabloPOOFicheros1\primos.txt', 'wt') as file:
     for line in primes_numbers:
         file.write(str(line) + '\n')
 
-with open('D:\\Programas\\PROG\\POO\\MeridaVelascoPabloPOOFicheros\\ej01primos\\primos.txt', 'rb') as file:
+with open('D:\Programas\PROG\POO\MeridaVelascoPabloPOOFicheros1\primos.txt', 'rt') as file:
     lines = file.readlines()
-    print(lines)
+    for line in lines:
+        print(line.strip())

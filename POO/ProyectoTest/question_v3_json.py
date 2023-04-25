@@ -1,6 +1,6 @@
 import json
 from dataclasses import dataclass
-from json import JSONDecoder
+from json import JSONEncoder
 from typeguard import typechecked
 
 JSON_FILE = "questions.json"
@@ -13,7 +13,7 @@ class Question:
     options: list[tuple[str, float]]
     base_pointed: int
 
-class QuestionEncoder(JSONDecoder):
+class QuestionEncoder(JSONEncoder):
     def default(self, dec):
         return dec.__dict__
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         Question('q5', '¿Cuál fue el primer programador/a?',[('Ada Lovelace', 2), ('von Neumann', -0.25), ('Peter Griffin', -0.25), ('Bill Gates', -0.25)], 1)
     ]
 
-    with open(JSON_FILE, "wt") as file:
+    with open(JSON_FILE, "wt", encoding='utf-8') as file:
         json.dump(questions, file, ensure_ascii=False, indent=4, cls=QuestionEncoder)
 
     print(f'Creado {JSON_FILE}')
