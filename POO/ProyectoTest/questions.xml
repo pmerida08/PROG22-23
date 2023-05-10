@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<test>
+	<question points="1">
+		<statement>AWDAWD</statement>
+		<options>
+			<option points="2">Opcion 1</option>
+			<option points="-0.25">Opcion 2</option>
+			<option points="-0.25">Opcion 3</option>
+			<option points="-0.25">OPcion 4</option>
+		</options>
+	</question>
+	<question points="1">
+		<statement>Hola</statement>
+		<options>
+			<option points="-0.25">a</option>
+			<option points="2">b</option>
+			<option points="-0.25">v</option>
+			<option points="-0.25">n</option>
+		</options>
+	</question>
+</test>
