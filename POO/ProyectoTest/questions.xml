@@ -1,21 +1,216 @@
 <?xml version="1.0" ?>
 <test>
+	
+	
+	
+	
+	
+	
 	<question points="1">
-		<statement>AWDAWD</statement>
-		<options>
-			<option points="2">Opcion 1</option>
-			<option points="-0.25">Opcion 2</option>
-			<option points="-0.25">Opcion 3</option>
-			<option points="-0.25">OPcion 4</option>
-		</options>
-	</question>
-	<question points="1">
+		
+		
+		
+		
+		
+		
 		<statement>Hola</statement>
+		
+		
+		
+		
+		
+		
 		<options>
-			<option points="-0.25">a</option>
-			<option points="2">b</option>
-			<option points="-0.25">v</option>
-			<option points="-0.25">n</option>
+			
+			
+			
+			
+			
+			
+			<option points="1">Op1</option>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">Op2</option>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">Op3</option>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">Op4</option>
+			
+			
+			
+		
+		
+		
+		</options>
+		
+		
+		
+	
+	
+	
+	</question>
+	
+	
+	
+	
+	
+	
+	<question points="1">
+		
+		
+		
+		
+		
+		
+		<statement>Adios</statement>
+		
+		
+		
+		
+		
+		
+		<options>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">Op1</option>
+			
+			
+			
+			
+			
+			
+			<option points="1">Op2</option>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">OP3</option>
+			
+			
+			
+			
+			
+			
+			<option points="-0.25">Op4</option>
+			
+			
+			
+		
+		
+		
+		</options>
+		
+		
+		
+	
+	
+	
+	</question>
+	
+	
+	
+
+	
+	
+	<question points="1">
+		
+		
+		
+		
+		<statement>Pag</statement>
+		
+		
+		
+		
+		<options>
+			
+			
+			
+			
+			<option points="-0.25">awdad</option>
+			
+			
+			
+			
+			<option points="-0.25">awd</option>
+			
+			
+			
+			
+			<option points="-0.25">aawd</option>
+			
+			
+			
+			
+			<option points="-0.25">awd</option>
+			
+			
+		
+		
+		</options>
+		
+		
+	
+	
+	</question>
+	
+	
+
+	
+	<question points="1">
+		
+		
+		<statement>Jose</statement>
+		
+		
+		<options>
+			
+			
+			<option points="-0.25">Op1</option>
+			
+			
+			<option points="-0.25">OP2</option>
+			
+			
+			<option points="-0.25">op3</option>
+			
+			
+			<option points="-0.25">op4</option>
+			
+		
+		</options>
+		
+	
+	</question>
+	
+
+	<question points="1">
+		<statement>P1</statement>
+		<options>
+			<option points="-0.25">Op1</option>
+			<option points="-0.25">Op2</option>
+			<option points="-0.25">OP3</option>
+			<option points="-0.25">Op4</option>
 		</options>
 	</question>
 </test>

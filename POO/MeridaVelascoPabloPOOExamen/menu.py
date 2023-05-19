@@ -1,20 +1,27 @@
 from cash_register import CashRegister
 
+
 def main():
     menu = Menu("Entrada de caja (con la fecha y hora actual).", "Salida de caja (con la fecha y hora actual).",
-                "Borrado del último movimiento de la caja.", "Impresión de la caja.", title = "Caja Registradora")
+                "Borrado del último movimiento de la caja.", "Impresión de la caja.", title="Caja Registradora")
 
     cash_register = CashRegister()
 
     while True:
         opc = menu.choose()
         match opc:
-            case 1: cash_register.add(13.56, 'Gasoil')
-            case 2: cash_register.add(-45.32, 'aAa1')
-            case 3: cash_register.delete_last()
-            case 4: print(cash_register)
-            case _: break
+            case 1:
+                cash_register.add(13.56, 'Gasoil')
+            case 2:
+                cash_register.add(-45.32, 'aAa1')
+            case 3:
+                cash_register.delete_last()
+            case 4:
+                print(cash_register)
+            case _:
+                break
     print("Hasta la próxima! :-)")
+
 
 class Menu:
 
@@ -43,6 +50,7 @@ class Menu:
             if 1 <= opc <= len(self.__options):
                 return opc
             print("Ha introducido una opción incorrecta.")
+
 
 if __name__ == '__main__':
     main()

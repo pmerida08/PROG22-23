@@ -22,7 +22,8 @@ Esta clase tiene que tener, al menos, los siguientes métodos:
 • delete_last()
     ◦ borra el último movimiento
 • __str_ )₍
-    ◦ devuelve una cadena con todos los movimientos y su saldo al final, si se imprime tiene que ser visualmente aceptable.
+    ◦ devuelve una cadena con todos los movimientos y su saldo al final, si se imprime tiene que ser visualmente
+    aceptable.
 • balance()
     ◦ devuelve el saldo de la caja
 
@@ -32,6 +33,7 @@ from typeguard import typechecked
 from movement import Movement as Move
 from datetime import datetime
 
+
 @typechecked
 class CashRegister:
 
@@ -39,7 +41,7 @@ class CashRegister:
         self.__registered = []
         self.__balance = 0
 
-    def add(self, amount: float, concept: str, date_time= datetime.now()):
+    def add(self, amount: float, concept: str, date_time=datetime.now()):
         m = Move(amount=amount, concept=concept, date_time=date_time)
         self.__registered.append(m)
         self.__balance += m.amount
@@ -59,11 +61,11 @@ class CashRegister:
         return self.__balance
 
     def __str__(self):
-            print()
-            print(f"{self.__class__.__name__}:")
-            for i in range(len(self.__registered)):
-                print(f'{self.__registered[i]}')
-            return ''
+        print()
+        print(f"{self.__class__.__name__}:")
+        for i in range(len(self.__registered)):
+            print(f'{self.__registered[i]}')
+        return ''
 
     @balance.setter
     def balance(self, value):

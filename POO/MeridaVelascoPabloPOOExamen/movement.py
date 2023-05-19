@@ -17,12 +17,12 @@ Los objetos de esta clase serán inmutables, pero el atributo de clase last_numb
 from typeguard import typechecked
 from datetime import datetime
 
+
 @typechecked
 class Movement:
-
     last_number = 1
 
-    def __init__(self, amount: float, concept:str ,date_time: datetime.now()):
+    def __init__(self, amount: float, concept: str, date_time: datetime.now()):
         self.__date_time = date_time
         self.__amount = amount
         self.__concept = concept
@@ -34,20 +34,18 @@ class Movement:
     def date_time(self):
         return self.__date_time
 
-
     @property
     def amount(self):
         return self.__amount
 
-
     @property
     def number(self):
         return self.__number
-
 
     @property
     def concept(self):
         return self.__concept
 
     def __str__(self):
-        return f'Número: {self.__number}, Cantidad: {self.__amount}, Concepto: {self.concept}, Fecha: {self.date_time.date()}, Hora: {self.date_time.time()}'
+        return f'Número: {self.__number}, Cantidad: {self.__amount}, Concepto: {self.concept}, Fecha: ' \
+            f'{self.date_time.date()}, Hora: {self.date_time.time()}'

@@ -1,5 +1,6 @@
 from typeguard import typechecked
 
+
 @typechecked
 class Question:
     __BASE_POINTS_MAX = 2
