@@ -1,72 +1,94 @@
-"""
-Vamos a crear la clase CashRegister que simula el comportamiento de una caja registradora
-como la que tiene cualquier comercio. Nuestra caja tendrá las siguientes operaciones:
-
-- Entrada y salida de efectivo. Tenemos que registrar la cantidad que entra o sale, la fecha y hora
-de la operación y el concepto. Esta operación tiene un identificador numérico que se genera
-automáticamente y por defecto es el de la operación anterior incrementado en 1. No se puede añadir
-un movimiento con fecha y hora anterior al último. Si la fecha y hora no se indica se toma la actual.
-
-- Borrado del último movimiento. El resto de movimientos no se pueden borrar porque
-descuadrarían los saldos de la caja.
-
-- Obtención de los movimientos de la caja.
-
-Esta clase tiene que tener, al menos, los siguientes métodos:
-
-• add()
-    ◦ recibe la cantidad (positiva o negativa), el concepto y la fecha y hora (datetime)
-    ◦ lanza excepción si la fecha y hora del movimiento es anterior al último
-    ◦ lanza excepción si el saldo que resulte después de aplicar este movimiento es negativo
-    ◦ si fecha y hora no se indican se toma la actual
-• delete_last()
-    ◦ borra el último movimiento
-• __str_ )₍
-    ◦ devuelve una cadena con todos los movimientos y su saldo al final, si se imprime tiene que ser visualmente
-    aceptable.
-• balance()
-    ◦ devuelve el saldo de la caja
-
-
-"""
-from typeguard import typechecked
-from movement import Movement as Move
+import csv
 from datetime import datetime
+from typing import Optional
+from typeguard import typechecked
+from movement import Movement
+
+DATE_FORMAT = "%H:%M:%S %d/%m/%Y"
+
+
+class CashRegisterError(Exception):
+
+    def __init__(self, message):
+        super().__init__(message)
 
 
 @typechecked
 class CashRegister:
 
-    def __init__(self):
-        self.__registered = []
-        self.__balance = 0
+    def __init__(self, csv_filename: Optional[str] = None):
+        self.__movements = []
+        if csv_filename:
+            self.__append(csv_filename)
 
-    def add(self, amount: float, concept: str, date_time=datetime.now()):
-        m = Move(amount=amount, concept=concept, date_time=date_time)
-        self.__registered.append(m)
-        self.__balance += m.amount
-        if amount < 0:
-            print(f'Has cogido de la caja registradora: {abs(m.amount)} €')
-        else:
-            print(f'Has añadido de la caja registradora: {m.amount} €')
-        print(f'Ahora la caja registradora tiene: {self.__balance:.2f} €')
+    def __append(self, csv_filename: str):
+        try:
+            with open(csv_filename) as csv_file:
+                csv_reader = csv.reader(csv_file)
+                for m in csv_reader:
+                    movement = Movement(float(m[1]), m[2], datetime.strptime(m[3], DATE_FORMAT), int(m[0]))
+                    self.__raise_if_movement_is_wrong(movement)
+                    self.__movements.append(movement)
+        except FileNotFoundError as e:
+            raise CashRegisterError(f"No se puede abrir para lectura el fichero {csv_filename}: {e}")
+        except ValueError as e:
+            raise CashRegisterError(f"El importe o el número o la fecha del movimiento {m} son incorrectos: {e}")
+        except IndexError as e:
+            raise CashRegisterError(f"Faltan campos en el movimiento: {m}: {e}")
+
+    def add(self, amount: float, concept: str, date_time: datetime = datetime.now()):
+        movement = Movement(amount, concept, date_time)
+        self.__raise_if_movement_is_wrong(movement)
+        self.__movements.append(movement)
+
+    def __raise_if_movement_is_wrong(self, movement: Movement):
+        if self.balance + movement.amount < 0:  # saldo correcto
+            raise CashRegisterError(f"No puede haber una salida de {-movement.amount} € porque el saldo quedaría "
+                                    f"en negativo")
+        if len(self.__movements) == 0:  # no hay movimientos, nada más que comprobar
+            return
+        if movement.number <= self.__movements[-1].number:  # identificador correcto
+            raise CashRegisterError(f"No se puede añadir un movimiento con fecha anterior al "
+                                    f"último: {self.__movements[-1].date_time}")
+        if movement.date_time < self.__movements[-1].date_time:  # fecha correcta
+            raise CashRegisterError(f"No se puede añadir un movimiento con fecha anterior al "
+                                    f"último: {self.__movements[-1].date_time}")
 
     def delete_last(self):
-        move_deleted = self.__registered[-1]
-        self.__balance -= move_deleted.amount
-        self.__registered.pop()
+        if len(self.__movements) == 0:
+            raise CashRegisterError("No hay movimientos")
+        self.__movements.pop()
+
+    def save(self, csv_filename: Optional[str] = None):
+        if not csv_filename:
+            csv_filename = "cash_register_" + datetime.now().strftime("%Y-%m-%d") + ".csv"
+        with open(csv_filename, "wt") as csv_file:
+            csv_writer = csv.writer(csv_file, quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+            for m in self.__movements:
+                csv_writer.writerow([m.number, m.amount, m.concept, m.date_time.strftime("%H:%M:%S %Y/%m/%d")])
+        return csv_filename
 
     @property
     def balance(self):
-        return self.__balance
+        balance_ = 0
+        for m in self.__movements:
+            balance_ += m.amount
+        return balance_
+
+    @property
+    def size(self):
+        return len(self.__movements)
 
     def __str__(self):
-        print()
-        print(f"{self.__class__.__name__}:")
-        for i in range(len(self.__registered)):
-            print(f'{self.__registered[i]}')
-        return ''
+        str_ = "LISTADO DE MOVIMIENTOS DE LA CAJA REGISTRADORA\n" + \
+               "______________________________________________\n" + \
+               f"Núm {'Fecha':19s} {'Concepto':50s} Importe\n"
+        str_ += self.__str_movements() + "\n"
+        str_ += f"SALDO: {self.balance:.2f} €\n"
+        return str_
 
-    @balance.setter
-    def balance(self, value):
-        self.__balance = value
+    def __str_movements(self):
+        str_ = ""
+        for m in self.__movements:
+            str_ += f"{m.number:3d} {m.date_time.strftime('%d/%m/%Y %H:%M:%S')} {m.concept:50s} {m.amount:7.2f} €\n"
+        return str_

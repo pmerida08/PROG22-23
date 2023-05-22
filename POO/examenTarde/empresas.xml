@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EMPRESAS>
+   <EMPRESA>
+      <CIF>B14545454545</CIF>
+      <NOMBRE_FISCAL>IES GG SOFTWARE</NOMBRE_FISCAL>
+      <DIRECCION>CALLE ARCOS DE LA FRONTERA SN</DIRECCION>
+      <APUNTES>
+         <APUNTE>
+            <NUMERO>1</NUMERO>
+            <CONCEPTO>GASTO MATERIAL OFICINA</CONCEPTO>
+            <IMPORTE>-75.23</IMPORTE>
+            <FECHA>25/03/2023</FECHA>
+         </APUNTE>
+         <APUNTE>
+            <NUMERO>2</NUMERO>
+            <CONCEPTO>FACTURA DEL GAS</CONCEPTO>
+            <IMPORTE>-175.23</IMPORTE>
+            <FECHA>27/04/2023</FECHA>
+         </APUNTE>
+         <APUNTE>
+            <NUMERO>3</NUMERO>
+            <CONCEPTO>SERVICIO DE SOPORTE ANUAL</CONCEPTO>
+            <IMPORTE>4823.25</IMPORTE>
+            <FECHA>26/05/2023</FECHA>
+         </APUNTE>
+      </APUNTES>
+   </EMPRESA>
+</EMPRESAS>
+
+

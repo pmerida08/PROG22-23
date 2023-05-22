@@ -1,0 +1,60 @@
+{
+  "EMPRESAS": {
+    "EMPRESA": [
+      {
+        "CIF": "B14545454545",
+        "NOMBRE_FISCAL": "IES GG SOFTWARE",
+        "DIRECCION": "CALLE ARCOS DE LA FRONTERA SN",
+        "APUNTES": {
+          "APUNTE": [
+            {
+              "NUMERO": 1,
+              "CONCEPTO": "GASTO MATERIAL OFICINA",
+              "IMPORTE": -75.23,
+              "FECHA": "25/03/2023"
+            },
+            {
+              "NUMERO": 2,
+              "CONCEPTO": "FACTURA DEL GAS",
+              "IMPORTE": -175.23,
+              "FECHA": "27/04/2023"
+            },
+            {
+              "NUMERO": 3,
+              "CONCEPTO": "SERVICIO DE SOPORTE ANUAL",
+              "IMPORTE": 4823.25,
+              "FECHA": "26/05/2023"
+            }
+          ]
+        }
+      },
+      {
+        "CIF": "B14545443333",
+        "NOMBRE_FISCAL": "AL-ANDALUS SL",
+        "DIRECCION": "CALLE CENTRO NUMERO 3",
+        "APUNTES": {
+          "APUNTE": [
+            {
+              "NUMERO": 1,
+              "CONCEPTO": "GASTO COMIDAS",
+              "IMPORTE": -275.23,
+              "FECHA": "24/03/2023"
+            },
+            {
+              "NUMERO": 2,
+              "CONCEPTO": "FACTURA DE LA LUZ MES ENERO",
+              "IMPORTE": -375.23,
+              "FECHA": "27/02/2023"
+            },
+            {
+              "NUMERO": 3,
+              "CONCEPTO": "VENTA SERVIDOR BASE DE DATOS",
+              "IMPORTE": 7842.25,
+              "FECHA": "05/02/2023"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
