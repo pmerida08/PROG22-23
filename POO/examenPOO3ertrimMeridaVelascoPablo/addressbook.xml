@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<addressbook>
+	
+	
+	
+
+
+	
+	
+	<contact>
+		
+		
+		
+		
+		<name>AWD</name>
+		
+		
+		
+		
+		<tel>654345345</tel>
+		
+		
+		
+		
+		<mail>a@aa.com</mail>
+		
+		
+		
+		
+		<address>C/LALA</address>
+		
+		
+	
+	
+	</contact>
+	
+	
+
+	
+	<contact>
+		
+		
+		<name>AA</name>
+		
+		
+		<tel>987978789</tel>
+		
+		
+		<mail>a@aa.com</mail>
+		
+		
+		<address>C/ALALA</address>
+		
+	
+	</contact>
+	
+
+	<contact>
+		<name>AAA</name>
+		<tel>654765987</tel>
+		<mail>a@a.com</mail>
+		<address>C/ADLAL</address>
+	</contact>
+</addressbook>

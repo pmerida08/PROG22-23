@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<addressbook>
+	
+	
+	
+
+	
+	
+	<contact>
+		
+		
+		
+		
+		<name>Pablo</name>
+		
+		
+		
+		
+		<tel>664549627</tel>
+		
+		
+		
+		
+		<mail>a@a.com</mail>
+		
+		
+		
+		
+		<address>C/LALALA</address>
+		
+		
+	
+	
+	</contact>
+	
+	
+	
+	
+	<contact>
+		
+		
+		
+		
+		<name>Victor</name>
+		
+		
+		
+		
+		<tel>645454548</tel>
+		
+		
+		
+		
+		<mail>b@b.com</mail>
+		
+		
+		
+		
+		<address>C/lololo</address>
+		
+		
+	
+	
+	</contact>
+	
+	
+
+	
+	<contact>
+		
+		
+		<name>Pepito</name>
+		
+		
+		<tel>666666666</tel>
+		
+		
+		<mail>pepito@gmail.com</mail>
+		
+		
+		<address>C/Lala Land</address>
+		
+	
+	</contact>
+	
+	
+	<contact>
+		
+		
+		<name>Jose</name>
+		
+		
+		<tel>699999911</tel>
+		
+		
+		<mail>jose@gmail.com</mail>
+		
+		
+		<address>C/Manolo 4</address>
+		
+	
+	</contact>
+	
+
+	<contact>
+		<name>Pepito</name>
+		<tel>666666666</tel>
+		<mail>pepito@gmail.com</mail>
+		<address>C/Lala Land</address>
+	</contact>
+	<contact>
+		<name>Pablo</name>
+		<tel>664549627</tel>
+		<mail>a@a.com</mail>
+		<address>C/LALALA</address>
+	</contact>
+	<contact>
+		<name>Jose</name>
+		<tel>699999911</tel>
+		<mail>jose@gmail.com</mail>
+		<address>C/Manolo 4</address>
+	</contact>
+	<contact>
+		<name>Victor</name>
+		<tel>645454548</tel>
+		<mail>b@b.com</mail>
+		<address>C/lololo</address>
+	</contact>
+</addressbook>

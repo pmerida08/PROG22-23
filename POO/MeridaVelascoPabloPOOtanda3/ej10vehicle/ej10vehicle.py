@@ -35,7 +35,7 @@ class Vehicle(ABC):
     vehicle_created = 0
 
     def __init__(self, name: str, kilometers_traveled: int):
-        self.__km = kilometers_traveled
+        self.km = kilometers_traveled
         self.__name = name
         Vehicle.vehicle_created += 1
 
