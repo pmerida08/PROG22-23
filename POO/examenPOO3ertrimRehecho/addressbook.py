@@ -1,11 +1,9 @@
-import os.path
-import re
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from typeguard import typechecked
-from contacts import Contact
+from contact import Contact
 
-PATH_XML = r'\w+\.xml'
+PATTERN_XML = r'\w+\.xml'
 
 
 @typechecked
@@ -14,7 +12,7 @@ class AddressLimitOfContacts(Exception):
         self.msg = msg
 
 
-class AddressFileError(Exception):
+class AddressFormatFileError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
@@ -29,42 +27,41 @@ class AddressBookContactNotAdded(Exception):
         self.msg = msg
 
 
+class AddressBookError(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+
 class AddressBook:
     __CONTACTS_LIMIT = 5
 
     def __init__(self, xml_file: str = None):
-        self.__listed_contacts = set()
+        self.__listed_contacts = []
 
-        if xml_file and re.match(PATH_XML, xml_file):
-            self.load_file(xml_file)
+        if xml_file:
+            self.__load_file(xml_file)
 
-    def load_file(self, xml_file):
-        if os.path.exists(f'./{xml_file}'):
+    def __load_file(self, xml_file: str):
+        try:
             tree = ET.parse(xml_file)
             root = tree.getroot()
 
             for contact in root.findall('contact'):
-                name = contact.find('name').text
-                tel = contact.find('tel').text
-                mail = contact.find('mail').text
-                address = contact.find('address').text
-
-                self.__listed_contacts.add(Contact(name, tel, mail, address))
-        raise AddressFileError('Hay problemas para poder escribir en el archivo.')
-
-    def show_addressbook(self):
-        contact = ''
-        for c in self.__listed_contacts:
-            contact += str(c)
-        return contact
+                name = contact.findtext('name')
+                tel = contact.findtext('tel')
+                mail = contact.findtext('mail')
+                address = contact.findtext('address')
+                self.register_contact(name, tel, mail, address)
+        except OSError:
+            raise AddressBookError('Hay problemas para poder abrir el archivo.')
 
     def register_contact(self, name: str, tel: str, mail: str, address: str = None):
-        if len(self.__listed_contacts) > AddressBook.__CONTACTS_LIMIT:
+        if len(self.__listed_contacts) >= AddressBook.__CONTACTS_LIMIT:
             raise AddressLimitOfContacts(f'El límite de contactos es de {AddressBook.__CONTACTS_LIMIT}')
         if self.search_contact(name):
             raise AddressBookContactAlreadyAdded('El contacto ya ha sido añadido.')
         contact = Contact(name, tel, mail, address)
-        self.__listed_contacts.add(contact)
+        self.__listed_contacts.append(contact)
 
     def search_contact(self, name: str):
         for contact in self.__listed_contacts:
@@ -77,28 +74,29 @@ class AddressBook:
             raise AddressBookContactNotAdded('El contacto que intenta eliminar no existe')
         self.__listed_contacts.remove(to_remove)
 
+    def __str__(self):
+        contact_str = ''
+        for contact in self.__listed_contacts:
+            contact_str += str(contact)
+        return f'{contact_str}'
+
     def export_to_xml(self, xml_file: str):
-        if os.path.exists(f'./{xml_file}'):
-            if re.match(PATH_XML, xml_file):
-                tree = ET.parse(xml_file)
-                root = tree.getroot()
+        try:
+            root = ET.Element('addressbook')
 
-                for c in self.__listed_contacts:
-                    contact = ET.SubElement(root, 'contact')
-                    name = ET.SubElement(contact, 'name')
-                    name.text = c.name
-                    tel = ET.SubElement(contact, 'tel')
-                    tel.text = c.tel
-                    mail = ET.SubElement(contact, 'mail')
-                    mail.text = c.mail
-                    address = ET.SubElement(contact, 'address')
-                    address.text = c.address
+            for c in self.__listed_contacts:
+                contact = ET.SubElement(root, 'contact')
+                ET.SubElement(contact, 'name').text = c.name
+                ET.SubElement(contact, 'tel').text = c.tel
+                ET.SubElement(contact, 'mail').text = c.mail
+                ET.SubElement(contact, 'address').text = c.address
 
-                tree = ET.ElementTree(root)
-                tree.write(xml_file, encoding='unicode')
+            tree = ET.ElementTree(root)
+            tree.write(xml_file, encoding='unicode')
 
-                xml_str = minidom.parseString(ET.tostring(root)).toprettyxml()
-                with open(xml_file, "w") as f:
-                    f.write(xml_str)
-                    print('Importado con éxito.')
-        raise AddressFileError('Hay problemas para poder escribir en el archivo.')
+            xml_str = minidom.parseString(ET.tostring(root)).toprettyxml()
+
+            with open(xml_file, "w") as f:
+                f.write(xml_str)
+        except OSError as e:
+            raise AddressBookError(f'Error: Ha habido problemas con el archivo. {e}')

@@ -1,23 +1,27 @@
 import re
 from typeguard import typechecked
 
-PATH_MAIL = r'[^@\t\r\n]+@[^@\t\r\n]+\.[^@\t\r\n]+'
+"""
+Contacto que se añade
+"""
 
-PATH_NUMBER = r'^[6-79][0-9]{8}$'
+PATTERN_MAIL = re.compile(r'[^@\t\r\n]+@[^@\t\r\n]+\.[^@\t\r\n]+')
+
+PATTERN_PHONE = re.compile(r'[679][0-9]{8}')
 
 
 @typechecked
-class ContactAttribNotMatch(TypeError):
+class ContactNameEmptyError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
 
-class ContactFormatException(ValueError):
+class ContactMailNotMatchError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
 
-class ContactNameEmpty(Exception):
+class ContactTelNotMatchError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
@@ -26,9 +30,9 @@ class Contact:
 
     def __init__(self, name: str, tel: str, mail: str, address: str = ""):
         if name == '':
-            raise ContactNameEmpty('El nombre no puede estar vacío')
+            raise ContactNameEmptyError('El nombre no puede estar vacío')
         self.__name = name
-        self.tel = tel  # Invoca el Setter de tel
+        self.tel = tel
         self.mail = mail
         self.address = address
 
@@ -42,13 +46,9 @@ class Contact:
 
     @tel.setter
     def tel(self, value):
-        try:
-            if re.match(PATH_NUMBER, value):
-                self.__tel = value
-            else:
-                raise ContactAttribNotMatch('El número de teléfono no coincide.')
-        except ContactAttribNotMatch as e:
-            print('Error: ' + e.msg)
+        if not PATTERN_PHONE.fullmatch(value):
+            raise ContactTelNotMatchError('El número de teléfono no coincide.')
+        self.__tel = value
 
     @property
     def mail(self):
@@ -56,13 +56,9 @@ class Contact:
 
     @mail.setter
     def mail(self, value):
-        try:
-            if re.match(PATH_MAIL, value):
-                self.__mail = value
-            else:
-                raise ContactAttribNotMatch('El mail no coincide.')
-        except ContactAttribNotMatch as e:
-            print('Error: ' + e.msg)
+        if not PATTERN_MAIL.fullmatch(value):
+            raise ContactMailNotMatchError('El mail no coincide.')
+        self.__mail = value
 
     @property
     def address(self):
