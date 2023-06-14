@@ -21,6 +21,7 @@ Crea métodos para:
 """
 from typeguard import typechecked
 
+
 @typechecked
 class Date:
     def __init__(self, day: int, month: int, year: int):
@@ -86,14 +87,14 @@ class Date:
             return f'La fecha {repr(self)} es menor a {repr(other)}'
         return f'La fecha {repr(self)} es menor a {repr(other)}'
 
-    def days_between(self, other: 'Date'): # TODO
+    def days_between(self, other: 'Date'):  # TODO
         pass
 
     def leap_year(self):
         return self.__year % 4 == 0 and (self.__year % 100 != 0 or self.__year % 400 == 0)
 
     def day_of(self):
-        first_date = Date(1, 1, 1) # Ese día fue lunes
+        first_date = Date(1, 1, 1)  # Ese día fue lunes
         total_days = 0
         while first_date != self:
             total_days += 1
@@ -104,7 +105,10 @@ class Date:
         return f"{self.__day:02d}/{self.__month:02d}/{self.__year:04d}"
 
     def __str__(self):
-        months = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
+        months = (
+            'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre',
+            'noviembre',
+            'diciembre')
         for month in range(12):
-            if (month+1) == self.__month:
+            if (month + 1) == self.__month:
                 return f"{self.__day} de {months[month]} de {self.__year}"

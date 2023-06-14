@@ -34,7 +34,7 @@ def extract_info(file, info):
 
         with open(file, 'r', encoding='utf-8') as f:
             text = f.read()
-            info = re.findall(regex[info], text)  # DNIs
+            info = re.findall(regex[info], text)
 
             for item in info:
                 print(item)

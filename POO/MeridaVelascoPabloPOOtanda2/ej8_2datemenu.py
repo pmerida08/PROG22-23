@@ -24,6 +24,7 @@ from ej8_1menu import Menu
 import datetime
 from dateutil.relativedelta import relativedelta
 
+
 @typechecked
 class Date:
     def __init__(self, day, month, year):
@@ -33,7 +34,7 @@ class Date:
         return self.date.strftime('%d/%m/%Y')
 
     def __repr__(self):
-            return f"{self.__class__.__name__}: {self.date.strftime('%d/%m/%Y')}"
+        return f"{self.__class__.__name__}: {self.date.strftime('%d/%m/%Y')}"
 
     def add_days(self, days):
         self.date += datetime.timedelta(days=days)
@@ -44,13 +45,15 @@ class Date:
         try:
             self.date = self.date.replace(month=new_month, year=new_year)
         except ValueError:
-            self.date = (datetime.date(self.date.year, self.date.month, 28) + datetime.timedelta(days=4)).replace(day=1) - datetime.timedelta(days=1)
+            self.date = (datetime.date(self.date.year, self.date.month, 28) + datetime.timedelta(days=4)).replace(
+                day=1) - datetime.timedelta(days=1)
 
     def add_years(self, years):
         try:
-            self.date = self.date.replace(year=self.date.year+years)
+            self.date = self.date.replace(year=self.date.year + years)
         except ValueError:
-            self.date = (datetime.date(self.date.year+years, self.date.month, 28) + datetime.timedelta(days=4)).replace(day=1) - datetime.timedelta(days=1)
+            self.date = (datetime.date(self.date.year + years, self.date.month, 28) + datetime.timedelta(
+                days=4)).replace(day=1) - datetime.timedelta(days=1)
 
     def compare(self, other):
         if isinstance(other, Date):
@@ -63,12 +66,14 @@ class Date:
 
     def long_format(self):
         days_week = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo']
-        months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+        months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre',
+                  'noviembre', 'diciembre']
         day_week = days_week[self.date.weekday()]
         day = self.date.day
         month = months[self.date.month - 1]
         year = self.date.year
         return day_week + ', ' + str(day) + ' de ' + month + ' de ' + str(year)
+
 
 if __name__ == '__main__':
     menu = Menu('Menú Fechas', 'Añadir días', 'Añadir meses', 'Añadir años')

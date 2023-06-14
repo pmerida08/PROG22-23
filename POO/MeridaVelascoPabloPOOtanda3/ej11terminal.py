@@ -37,6 +37,7 @@ Fecha: 03/03/2023
 
 from typeguard import typechecked
 
+
 @typechecked
 class Terminal:
     __LENGTH_PHONE_NUMBER = 9
@@ -47,7 +48,8 @@ class Terminal:
             self.__phone_number = number
             self.__talk_seconds = 0
             __registered_numbers.append(number)
-        else: raise ValueError('El formato del número de teléfono es inválido.')
+        else:
+            raise ValueError('El formato del número de teléfono es inválido.')
 
     def call(self, tel: 'Terminal', seconds: int):
         if seconds < 0:
@@ -61,10 +63,11 @@ class Terminal:
         return self.__talk_seconds
 
     def __repr__(self):
-            return f'{self.__class__.__name__}'
+        return f'{self.__class__.__name__}'
 
     def __str__(self):
         return f'Nº {self.__phone_number[:3]} {self.__phone_number[3:5]} {self.__phone_number[5:7]} {self.__phone_number[7:9]} - {self.__talk_seconds}s de conversación'
+
 
 if __name__ == '__main__':
     t1 = Terminal("678112233")

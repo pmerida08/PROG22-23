@@ -16,6 +16,7 @@ Fecha: 05/03/2023
 import random
 from typing import List
 from typeguard import typechecked
+
 from card import Card
 
 
@@ -32,7 +33,7 @@ class Deck:
     def deal(self, player, number: int):
         if number < 0:
             raise ValueError("El número de cartas a repartir tiene que ser positivo")
-        if number > len(self.__cards):
+        if number > self.size:
             raise ValueError("No hay cartas suficientes para repartir")
 
         cards_to_deal = self.__cards[:number]
@@ -49,3 +50,17 @@ class Deck:
 
     def __repr__(self):
         return repr(self.__cards)
+
+
+if __name__ == '__main__':
+    cards_ = [
+        Card("♣", "4"),
+        Card("♣", "6"),
+        Card("♡", "2"),
+        Card("♡", "3")
+    ]
+
+    deck1 = Deck(cards_)
+    deck1.shuffle()
+    print(deck1)
+

@@ -30,7 +30,6 @@ def total_vehicles_km():
 
 
 class Vehicle(ABC):
-
     total_kilometers = 0
     vehicle_created = 0
 
@@ -65,10 +64,12 @@ class Bike(Vehicle):
     def wheelie(self):
         return f'{self.__name}: Pedazo caballitooooo!!!'
 
+
 class Car(Vehicle):
 
     def burn_wheel(self):
         return f'{self.__name}: Quemando esas gomass!!!'
+
 
 if __name__ == '__main__':
     menu = Menu('Vehículos', 'Anda con la bicicleta', 'Haz el caballito con la bicicleta', 'Anda con el coche',

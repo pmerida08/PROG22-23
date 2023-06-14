@@ -3,11 +3,13 @@
 como la palabra se deben pasar como argumentos en la línea de comandos.
 
 """
+import sys
 
-word = input('Di la palabra que quieras ver cuantas ocurrencias hay en el archivo: ')
+text_file = sys.argv[1]
+word = sys.argv[2]
 
 count = 0
-with open('file.txt', 'r+t', encoding='utf-8') as file:
+with open(text_file, 'r', encoding='utf-8') as file:
     for line in file:
         count += line.count(word)
 

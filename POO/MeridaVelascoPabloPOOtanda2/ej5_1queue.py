@@ -10,7 +10,8 @@ La pila y la cola permitirán estas operaciones:
 
     Para el caso de la cola:
         Encolar (enqueue): se añade un elemento a la cola. Se añade al final de esta.
-        Desencolar (dequeue): se saca (debe devolverse) y se elimina el elemento frontal de la cola, es decir, el primer elemento que entró.
+        Desencolar (dequeue): se saca (debe devolverse) y se elimina el elemento frontal de la cola, es decir, el primer
+        elemento que entró.
         Leer el elemento frontal de la cola, es decir, el primer elemento que entró, sin retirarlo (front).
 
 Autor: Pablo Mérida Velasco
@@ -18,7 +19,10 @@ Curso: 1º DAW A
 Fecha: 15/01/2023
 
 """
+from typeguard import typechecked
 
+
+@typechecked
 class Queue:
 
     def __init__(self, *elements):

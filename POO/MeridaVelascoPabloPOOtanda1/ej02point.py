@@ -11,20 +11,29 @@ Fecha: 15/01/2023
 """
 from typeguard import typechecked
 
+
 class Point:
 
-    @typechecked # check del tipado de las variables
-    def __init__(self, x: int = 0, y: int = 0):
+    @typechecked  # check del tipado de las variables
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
-    @property # getter de la coordenada X (Devuelve el valor de X)
+    @property  # getter de la coordenada X (Devuelve el valor de X)
     def x(self):
         return self.__x
 
     @property
-    def y(self): # getter de la coordenada Y (Devuelve el valor de Y)
+    def y(self):  # getter de la coordenada Y (Devuelve el valor de Y)
         return self.__y
+
+    @y.setter
+    def y(self, value: int):
+        self.__y = value
+
+    @x.setter
+    def x(self, value: int):
+        self.__x = value
 
     def invert_coordinates(self):
         aux = self.__x
@@ -36,13 +45,3 @@ class Point:
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self.__x}, {self.__y})'
-
-    @y.setter
-    @typechecked
-    def y(self, value: int):
-        self.__y = value
-
-    @x.setter
-    @typechecked
-    def x(self, value: int):
-        self.__x = value

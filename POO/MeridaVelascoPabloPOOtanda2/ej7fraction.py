@@ -11,17 +11,18 @@ hacer las siguientes operaciones:
 from typeguard import typechecked
 import math
 
+
 @typechecked
 class Fraction:
 
-    def __init__(self, numerador: int, denominador: int):
-        if denominador == 0:
+    def __init__(self, numerator: int, denominator: int):
+        if denominator == 0:
             raise ValueError('El denominador no puede ser 0.')
 
-        mcd = math.gcd(numerador, denominador)
+        mcd = math.gcd(numerator, denominator)
 
-        self.__numerador = numerador // mcd
-        self.__denominador = denominador // mcd
+        self.__numerador = numerator // mcd
+        self.__denominador = denominator // mcd
 
     @property
     def numerador(self):
@@ -38,29 +39,32 @@ class Fraction:
     def __add__(self, other):
         mcm = (self.denominador * other.denominador)
         if isinstance(other, Fraction):
-            return Fraction(numerador=self.numerador // mcm + other.numerador // mcm, denominador=mcm)
-        return Fraction(numerador=self.numerador // mcm + other // mcm, denominador=mcm)
+            return Fraction(numerator=self.numerador // mcm + other.numerador // mcm, denominator=mcm)
+        return Fraction(numerator=self.numerador // mcm + other // mcm, denominator=mcm)
 
     def __sub__(self, other):
         mcm = (self.numerador * self.denominador) // math.gcd(self.numerador, self.denominador)
         if isinstance(other, Fraction):
-            return Fraction(numerador=self.numerador // mcm - other.numerador // mcm, denominador= mcm)
-        return Fraction(numerador=self.numerador // mcm - other // mcm, denominador= mcm)
+            return Fraction(numerator=self.numerador // mcm - other.numerador // mcm, denominator=mcm)
+        return Fraction(numerator=self.numerador // mcm - other // mcm, denominator=mcm)
 
     def __mul__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerador=self.numerador * other.numerador, denominador=self.denominador * other.denominador)
-        return Fraction(numerador=self.numerador * other, denominador=self.denominador)
+            return Fraction(numerator=self.numerador * other.numerador,
+                            denominator=self.denominador * other.denominador)
+        return Fraction(numerator=self.numerador * other, denominator=self.denominador)
 
     def __rmul__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerador=self.numerador * other.numerador, denominador=self.denominador * other.denominador)
-        return Fraction(numerador=self.numerador * other, denominador=self.denominador)
+            return Fraction(numerator=self.numerador * other.numerador,
+                            denominator=self.denominador * other.denominador)
+        return Fraction(numerator=self.numerador * other, denominator=self.denominador)
 
     def __truediv__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerador=self.numerador * other.denominador, denominador=self.denominador * other.numerador)
-        return Fraction(numerador=self.numerador, denominador=self.denominador * other)
+            return Fraction(numerator=self.numerador * other.denominador,
+                            denominator=self.denominador * other.numerador)
+        return Fraction(numerator=self.numerador, denominator=self.denominador * other)
 
     def __repr__(self):
         return f"{self.__class__.__name__}: {self.__numerador} / {self.__denominador}"

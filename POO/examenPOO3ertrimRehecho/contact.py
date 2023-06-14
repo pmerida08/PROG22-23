@@ -5,28 +5,31 @@ from typeguard import typechecked
 Contacto que se añade
 """
 
-PATTERN_MAIL = re.compile(r'[^@\t\r\n]+@[^@\t\r\n]+\.[^@\t\r\n]+')
-
-PATTERN_PHONE = re.compile(r'[679][0-9]{8}')
-
 
 @typechecked
-class ContactNameEmptyError(Exception):
+class ContactError(Exception):
     def __init__(self, msg):
-        self.msg = msg
+        super().__init__(msg)
 
 
-class ContactMailNotMatchError(Exception):
+class ContactNameEmptyError(ContactError):
     def __init__(self, msg):
-        self.msg = msg
+        super().__init__(msg)
 
 
-class ContactTelNotMatchError(Exception):
+class ContactMailNotMatchError(ContactError):
     def __init__(self, msg):
-        self.msg = msg
+        super().__init__(msg)
+
+
+class ContactTelNotMatchError(ContactError):
+    def __init__(self, msg):
+        super().__init__(msg)
 
 
 class Contact:
+    __PATTERN_MAIL = re.compile(r'[^@\t\r\n]+@[^@\t\r\n]+\.[^@\t\r\n]+')
+    __PATTERN_PHONE = re.compile(r'[679][0-9]{8}')
 
     def __init__(self, name: str, tel: str, mail: str, address: str = ""):
         if name == '':
@@ -46,7 +49,7 @@ class Contact:
 
     @tel.setter
     def tel(self, value):
-        if not PATTERN_PHONE.fullmatch(value):
+        if not Contact.__PATTERN_PHONE.fullmatch(value):
             raise ContactTelNotMatchError('El número de teléfono no coincide.')
         self.__tel = value
 
@@ -56,7 +59,7 @@ class Contact:
 
     @mail.setter
     def mail(self, value):
-        if not PATTERN_MAIL.fullmatch(value):
+        if not Contact.__PATTERN_MAIL.fullmatch(value):
             raise ContactMailNotMatchError('El mail no coincide.')
         self.__mail = value
 

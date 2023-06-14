@@ -33,7 +33,7 @@ Curso: 1º DAW A
 Fecha: 05/03/2023
 """
 from typeguard import typechecked
-from POO.MeridaVelascoPabloPOOtanda3.ej11terminal import Terminal
+from ..ej11terminal import Terminal
 from rate import Rate
 
 
@@ -59,6 +59,7 @@ class Mobile(Terminal):
 
     def __str__(self):
         return super().__str__() + f" - tarificados {self.__price:.2f} euros"
+
 
 if __name__ == '__main__':
     m1 = Mobile("678112233", "rata")

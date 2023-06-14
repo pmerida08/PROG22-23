@@ -16,9 +16,10 @@ Crea los getters y setters mediante propiedades y métodos para:
 """
 from typeguard import typechecked
 
-@typechecked
+
 class Duration:
 
+    @typechecked
     def __init__(self, hour: int = 0, minutes: int = 0, seconds: int = 0):
 
         while True:

@@ -1,15 +1,19 @@
+import os.path
 import xml.etree.ElementTree as ET
 import json
 import re
 
-XML_FILE = 'questions.xml'
-JSON_FILE = 'questions.json'
+XML_FILE = 'POO/ProyectoTest/questions.xml'
+JSON_FILE = 'POO/ProyectoTest/questions.json'
 path_xml = r'\w+\.xml'
 path_json = r'\w+\.json'
 
 
 def main():
-    file = input('Escribe el archivo que se desea leer: ')
+    file = input('Elige entre JSON y XML desea leer: ')
+
+    if not os.path.exists(XML_FILE or JSON_FILE):
+        raise FileNotFoundError('El archivo introducido no se ha encontrado.')
 
     if re.match(path_xml, file):
 
@@ -37,11 +41,7 @@ def main():
 
     elif re.match(path_json, file):
         with open(JSON_FILE, encoding='utf-8') as json_file:
-            questions = json.load(json_file, object_hook=question_decoder)
-
-        print(questions)
-    else:
-        raise FileNotFoundError('El archivo introducido no se ha encontrado.')
+            json.load(json_file, object_hook=question_decoder)
 
 
 def question_decoder(q):

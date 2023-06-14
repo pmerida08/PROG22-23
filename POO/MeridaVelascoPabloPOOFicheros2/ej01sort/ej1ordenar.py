@@ -9,13 +9,13 @@ WORDS = 5
 listing_words = []
 sorted_words = []
 
-with open('D:\Programas\PROG\POO\MeridaVelascoPabloFicheros2\ej01sort\ej1ordenar.txt', 'rt', encoding='utf-8') as file:
+with open('ej1ordenar.txt', 'rt', encoding='utf-8') as file:
     for _ in range(WORDS):
         line = file.readline().rstrip()
         listing_words.append(line)
 
 sorted_words = sorted(listing_words)
 
-with open('D:\Programas\PROG\POO\MeridaVelascoPabloFicheros2\ej01sort\ej1ordenar_sorted.txt', 'r+t', encoding='utf-8') as file:
+with open('ej1ordenar_sorted.txt', 'r+t', encoding='utf-8') as file:
     for word in sorted_words:
         file.write(word + '\n')

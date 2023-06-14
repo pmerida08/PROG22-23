@@ -21,4 +21,4 @@ class Rate:
         return self.__minute_fee
 
     def price(self, seconds: int):
-        return self.__minute_fee * seconds/600
+        return self.__minute_fee * (seconds/60)

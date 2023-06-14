@@ -18,7 +18,10 @@ Curso: 1º DAW A
 Fecha: 15/01/2023
 
 """
+from typeguard import typechecked
 
+
+@typechecked
 class Stack:
 
     def __init__(self, *elements):
@@ -48,5 +51,3 @@ class Stack:
 
     def top(self):
         return self.__elements[0]
-
-

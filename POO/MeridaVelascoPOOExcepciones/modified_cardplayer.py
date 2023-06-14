@@ -4,6 +4,13 @@ from POO.MeridaVelascoPabloPOOtanda3.ej14deck.card import Card
 from POO.MeridaVelascoPabloPOOtanda3.ej14deck.deck import Deck
 
 
+@typechecked
+class HasNotCard(Exception):
+
+    def __init__(self, card):
+        super().__init__(f"El jugador no puede deshacerse de la carta {card} porque no la tiene")
+
+
 class CardPlayer:
 
     def __init__(self, name: str):
@@ -27,14 +34,8 @@ class CardPlayer:
 
     def throws(self, card: Card):
         if card not in self.__cards:
-            raise HasNotCard(f"El jugador no puede deshacerse de la carta {card}, no la tiene")
+            raise HasNotCard(card)
         self.__cards.remove(card)
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.__name}, cards={self.__cards})"
-
-
-@typechecked
-
-class HasNotCard(Exception):
-    pass

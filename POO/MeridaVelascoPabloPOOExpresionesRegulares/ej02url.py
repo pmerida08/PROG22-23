@@ -56,7 +56,7 @@ def extract_code():
 
 
 def check_args():
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 3:
         return
     else:
         print("Error en el número de argumentos. La sintaxis correcta es <URL> <ETIQUETA HTML>", file=sys.stderr)

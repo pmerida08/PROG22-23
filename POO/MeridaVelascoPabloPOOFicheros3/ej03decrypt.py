@@ -16,6 +16,7 @@ resultado en otro archivo, que también pasamos como parámetro, de manera que:
 
 import sys
 
+
 def decrypt(encrypted_msg, keyname):
     decrypted_msg = ""
     for char in encrypted_msg:
@@ -27,6 +28,7 @@ def decrypt(encrypted_msg, keyname):
         else:
             decrypted_msg += char
     return decrypted_msg
+
 
 if len(sys.argv) not in (2, 3):
     print("Uso: python decrypt.py fichero_encriptado [fichero_destino]")

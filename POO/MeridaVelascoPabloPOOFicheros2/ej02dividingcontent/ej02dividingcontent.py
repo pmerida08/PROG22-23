@@ -9,18 +9,23 @@ comandos.
 Hay que tener en cuenta que los ficheros de donde se van cogiendo las líneas pueden tener tamaños diferentes.
 
 """
+import sys
+
 LINES = 11
 wrapped_lines = []
 
+file2 = sys.argv[1]
+file1 = sys.argv[2]
+
 for i in range(1, LINES):
     if i % 2 == 0:
-        with open('file2.txt', 'r+t', encoding='utf-8') as file:
-            file.seek(0,2)
+        with open(file2, 'r+t', encoding='utf-8') as file:
+            file.seek(0, 2)
             str_ = f'Esta es la línea {i}\n'
             file.write(str_)
             wrapped_lines.append(str_)
     else:
-        with open('file1.txt', 'r+t', encoding='utf-8') as file:
+        with open(file1, 'r+t', encoding='utf-8') as file:
             file.seek(0, 2)
             str_ = f'Esta es la línea {i}\n'
             file.write(str_)

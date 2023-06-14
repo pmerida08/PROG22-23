@@ -39,6 +39,7 @@ Fecha: 05/03/2023
 from typeguard import typechecked
 import random
 
+
 @typechecked
 class BankAccount:
 
@@ -52,7 +53,7 @@ class BankAccount:
         return f'Número de cta: {self.__number_account:010d} Saldo: {self.__balance:0.2f} €'
 
     def __repr__(self):
-            return f"{self.__class__.__name__}"
+        return f"{self.__class__.__name__}"
 
     def deposit(self, money: int):
         self.__balance += money
@@ -60,11 +61,13 @@ class BankAccount:
     def withdraw(self, money: int):
         if self.__balance < 0 and self.__balance < money:
             raise ValueError('El dinero retirado no puede ser más que el saldo de la cuenta bancaria')
-        else: self.__balance -= money
+        else:
+            self.__balance -= money
 
     def transfer(self, other: 'BankAccount', money: int):
         self.withdraw(money)
         other.deposit(money)
+
 
 if __name__ == '__main__':
     cuenta1 = BankAccount()

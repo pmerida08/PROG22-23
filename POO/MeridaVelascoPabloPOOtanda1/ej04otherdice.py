@@ -13,10 +13,11 @@ import random
 from typing import Optional
 from typeguard import typechecked
 
+
 class OtherDice:
 
     @typechecked
-    def __init__(self, on_top: Optional[int] = None, faces: int = 6):
+    def __init__(self, on_top: Optional[int] = 0, faces: int = 6):
 
         if faces <= 0:
             raise ValueError(f'El número de caras no puede ser mayor o igual que 0.')

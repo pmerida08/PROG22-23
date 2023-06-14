@@ -41,15 +41,16 @@ class Menu:
     def show(self):
         print(f'{self.__title}')
         for i, option in enumerate(self.__options):
-            print(f'{i+1}. {option}')
+            print(f'{i + 1}. {option}')
 
     def choose(self, option: int):
-        return self.__options[option-1]
+        return self.__options[option - 1]
 
     @staticmethod
     def exit():
         print("Saliendo del programa...")
         sys.exit()
+
 
 if __name__ == '__main__':
     menu = Menu('Menú Fechas', 'Introducir una fecha (DD/MM/AAAA)', 'Añadir días', 'Añadir meses', 'Añadir años')

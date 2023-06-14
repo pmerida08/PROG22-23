@@ -2,6 +2,7 @@ from ej01dice import Dice
 from unittest import TestCase
 import unittest
 
+
 class MyTestCase(unittest.TestCase):
 
     def set_up(self):
@@ -18,9 +19,9 @@ class MyTestCase(unittest.TestCase):
         self.assertLessEqual(self.caras.try_it(), 6)
         self.assertGreaterEqual(self.caras.try_it(), 1)
 
+
 if __name__ == '__main__':
     unittest.main()
-
 
 if __name__ == '__main__':
     unittest.main()

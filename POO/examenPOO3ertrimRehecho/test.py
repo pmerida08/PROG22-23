@@ -1,6 +1,5 @@
-from addressbook import AddressBook, AddressFormatFileError, AddressBookContactAlreadyAdded, AddressLimitOfContacts, \
-    AddressBookContactNotAdded
-from contact import ContactNameEmptyError, ContactTelNotMatchError, ContactMailNotMatchError
+from addressbook import AddressBook, AddressBookError
+from contact import ContactError
 from menu import Menu
 
 ad_book = AddressBook()
@@ -26,8 +25,8 @@ def remove_contact():
         name_contact = input('Introduce el contacto a eliminar: ')
         ad_book.remove_contact(name_contact)
         print('Contacto eliminado con éxito.')
-    except AddressBookContactNotAdded:
-        print('El contacto que quiere eliminar no existe.')
+    except AddressBookError as e:
+        print(f'\nERROR: {e}\n')
 
 
 def search_contact():
@@ -35,8 +34,8 @@ def search_contact():
         contact_to_search = input('Introduce el contacto que quieres buscar: ')
         found_contact = ad_book.search_contact(contact_to_search)
         print(found_contact)
-    except AddressBookContactNotAdded:
-        print('El contacto no se ha encontrado.')
+    except AddressBookError as e:
+        print(f'\nERROR: {e}\n')
 
 
 def import_from_xml():
@@ -45,8 +44,8 @@ def import_from_xml():
     try:
         ad_book = AddressBook(xml_file)
         print('Archivo cargado con éxito.')
-    except AddressFormatFileError as e:
-        print('Error: ' + e.msg)
+    except AddressBookError as e:
+        print(f'\nERROR: {e}\n')
 
 
 def register_contact():
@@ -57,10 +56,10 @@ def register_contact():
     try:
         ad_book.register_contact(name_contact_to_add, tel_contact_to_add, mail_contact_to_add, address_contact_to_add)
         print('\nContacto añadido con éxito.\n')
-    except (AddressBookContactAlreadyAdded, AddressLimitOfContacts) as e:
-        print('\nError: ' + e.msg)
-    except (ContactNameEmptyError, ContactTelNotMatchError, ContactMailNotMatchError) as e:
-        print('\nError: ' + e.msg)
+    except AddressBookError as e:
+        print(f'\nERROR: {e}\n')
+    except ContactError as e:
+        print(f'\nERROR: {e}\n')
 
 
 def show_list():
@@ -72,8 +71,8 @@ def export_to_xml():
         xml_file = input('Indica en qué archivo xml exportar los contactos: ')
         ad_book.export_to_xml(xml_file)
         print('\nLista de contactos añadida correctamente.\n')
-    except AddressFormatFileError as e:
-        print('Error: ' + e.msg)
+    except AddressBookError as e:
+        print(f'\nERROR: {e}\n')
 
 
 if __name__ == '__main__':

@@ -17,9 +17,9 @@ NUM_CARDS = 10
 
 deck = set()
 
-for _ in range(NUM_CARDS): # TODO Averiguar cómo ordenarlos y recoger posibilidad de que la carta se repita
+for _ in range(NUM_CARDS):  # TODO Averiguar cómo ordenarlos y recoger posibilidad de que la carta se repita
     card_to_add = Card(random.choice(NUMBERS), random.choice(SUITS))
     deck.add(card_to_add)
 
 cards_list = list(deck)
-cards_list.sort(key= lambda c: (c.suit, NUMBERS.index(c.number)))
+cards_list.sort(key=lambda c: (c.suit, NUMBERS.index(c.number)))

@@ -6,5 +6,5 @@ public class HolaMundo {
 }
 //Aqui acaba el programa
 /*
-Esto es un comentario largo
+ * Esto es un comentario largo
 */
