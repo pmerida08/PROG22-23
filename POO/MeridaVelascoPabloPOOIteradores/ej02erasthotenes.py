@@ -10,33 +10,33 @@ from typeguard import typechecked
 @typechecked
 class PrimeIterator(Iterator):
 
+    def __init__(self, last_number: int = 20):
+        num_primes = self.__sieve_eratosthenes(last_number)
+        self.__primes_iterator = iter(num_primes)
+
     @staticmethod
     def is_mult(num, mult):
         return num % mult == 0
 
-    def __init__(self, last_number: int = 20):
-        self.__last_number = last_number
-        self.__num_primes = self.__sieve_etatostenes(last_number)
-        self.__primes_iterator = iter(self.__num_primes)
-
     @staticmethod
-    def __sieve_etatostenes(stop):
-        primes = list(n for n in range(2, stop + 1))
+    def __sieve_eratosthenes(stop):
+        primes = list(range(2, stop + 1))
         index = 0
 
         while primes[index] ** 2 < stop:
-            for j in range(len(primes[index+1:])):
+            for num in primes[index+1:]:
+                if num % primes[index] == 0:
+                    primes.remove(num)
 
-                index += 1
+            index += 1
         return primes
 
     def __next__(self):
         return next(self.__primes_iterator)
 
-    def __str__(self):
-        return str(self.__num_primes)
-
 
 if __name__ == '__main__':
-    prime = PrimeIterator()
-    print(prime)
+    num_limit = int(input('Introduce hasta qué valor desea sacar la lista de números primos: '))
+    for p in PrimeIterator(num_limit):
+        print(p, end=" ")
+    print()

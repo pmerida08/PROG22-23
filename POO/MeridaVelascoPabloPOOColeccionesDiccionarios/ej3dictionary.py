@@ -1,5 +1,5 @@
 """
-3. Crea un mini-diccionario español-inglés que contenga, al menos, 20 palabras (con su correspondiente traducción).
+3. Crea un minidiccionario español-inglés que contenga, al menos, 20 palabras (con su correspondiente traducción).
 Utiliza un diccionario para almacenar las parejas de palabras. El programa pedirá una palabra en español y dará la
 correspondiente traducción en inglés.
 
@@ -36,7 +36,7 @@ WORDS = {
 while True:
     to_translate = random.choice(list(WORDS))
     in_english = input(f'Introduce la traduccion de la palabra "{to_translate}": ')
-    if WORDS[to_translate] ==  in_english:
+    if WORDS[to_translate] == in_english:
         print(f'Has acertado, la traducción de "{to_translate}" es "{in_english}".')
         break
     else:

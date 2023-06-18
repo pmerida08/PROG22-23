@@ -27,6 +27,21 @@ Curso: 1º DAW A
 Fecha: 27/03/2023
 """
 from typeguard import typechecked
+
+
+def main():
+    mi_carrito = Cart()
+    mi_carrito.add(Element("Tarjeta SD 64Gb", 19.95, 2))
+    mi_carrito.add(Element("Canon EOS 2000D", 449, 1))
+    print(mi_carrito)
+
+    print("\nContinúa la compra...\n")
+    mi_carrito.add(Element("Samsung Galaxy Tab", 199, 3))
+    mi_carrito.add(Element("Tarjeta SD 64Gb", 19.95, 1))
+    print(mi_carrito)
+
+
+
 @typechecked
 class Element:
     def __init__(self, name, price, amount):
@@ -46,6 +61,10 @@ class Element:
     def amount(self):
         return self.__amount
 
+    def __repr__(self):
+        return f"{self.__name} PVP: {self.__price} Unidades: {self.__amount} \n"
+
+
 @typechecked
 class Cart:
 
@@ -55,14 +74,9 @@ class Cart:
         self.total_cost = 0
 
     def add(self, element: Element):
-        for e in range(len(self.elements)):
-            if element.name in self.elements[e]:
-                self.number_elements += element.amount
-                self.total_cost += element.price
-            else:
-                self.elements.append(element)
-                self.number_elements += element.amount
-                self.total_cost += element.price
+        self.elements.append(element)
+        self.number_elements += element.amount
+        self.total_cost += element.price
 
     def __str__(self):
         return f"Ahora hay {self.number_elements} productos en la cesta.\n" \
@@ -70,3 +84,7 @@ class Cart:
 
     def __repr__(self):
         return f'Número de elementos: {self.number_elements} Total: {self.total_cost:.2f} €.'
+
+
+if __name__ == '__main__':
+    main()

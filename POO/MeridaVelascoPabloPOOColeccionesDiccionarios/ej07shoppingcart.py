@@ -45,6 +45,7 @@ Fecha: 26/03/2023
 """
 from typeguard import typechecked
 
+
 def main():
     mi_carrito = Cart()
     mi_carrito.add(Element("Tarjeta SD 64Gb", 19.95, 2))
@@ -59,6 +60,7 @@ def main():
     print(mi_carrito)
     print(f"Ahora hay {mi_carrito.number_elements} productos en la cesta.")
     print(f"El total asciende a {mi_carrito.total_cost:.2f}  euros")
+
 
 @typechecked
 class Element:
@@ -80,7 +82,8 @@ class Element:
         return self.__amount
 
     def __repr__(self):
-            return f"{self.__name} PVP: {self.__price} Unidades: {self.__amount} \n"
+        return f"{self.__name} PVP: {self.__price} Unidades: {self.__amount} \n"
+
 
 @typechecked
 class Cart:
@@ -101,7 +104,6 @@ class Cart:
     def __repr__(self):
         return self.elements
 
+
 if __name__ == '__main__':
     main()
-
-

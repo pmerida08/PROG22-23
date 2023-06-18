@@ -22,8 +22,6 @@
 from typeguard import typechecked
 from ej8_1menu import Menu
 import datetime
-from dateutil.relativedelta import relativedelta
-
 
 @typechecked
 class Date:
@@ -90,23 +88,18 @@ if __name__ == '__main__':
             case 1:
                 print(menu[option])
                 date.add_days(4)
-                continue
             case 2:
                 print(menu[option])
                 date.add_months(5)
-                continue
             case 3:
                 print(menu[option])
                 date.add_years(7)
-                continue
             case 4:
                 print(menu[option])
                 date.compare(Date(3, 5, 2004))
-                continue
             case 5:
                 print(menu[option])
                 date.long_format()
-                continue
             case 6:
                 print(menu[option])
                 menu.exit()

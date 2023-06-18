@@ -4,32 +4,41 @@
 
         Ejemplo: "primes = list(PrimeIterator(15)) devolverá [2, 3, 5, 7, 11, 13]
 """
+import math
 from typing import Iterator
 
 
 class PrimeIterator(Iterator):
-    def __init__(self, nums):
-        self.__nums = nums
+    def __init__(self, stop):
+        if stop < 2:
+            raise ValueError('El mínimo debe ser mayor o igual que 2')
+        self.__stop = stop
+        self.__current_prime = 2
 
     def __next__(self):
-        nums = [n for n in range(2, 20)]
-        for _ in nums:
-            primes = list(filter(lambda x: self.es_primo(x), self.__nums))
-            return primes
+        if self.__current_prime > self.__stop:
+            raise StopIteration
+        prime, self.__current_prime = self.__current_prime, self.__next_prime()
+        return prime
+
+    def __next_prime(self):
+        if self.__current_prime == 2:
+            return 3
+        candidate_prime = self.__current_prime + 2
+        while not self.__is_prime(candidate_prime):
+            candidate_prime += 2
+        return candidate_prime
 
     @staticmethod
-    def es_primo(num):
-        if num < 2:
-            return False
-        for i in range(2, int(num ** 0.5) + 1):
+    def __is_prime(num):
+        for i in range(3, int(math.sqrt(num) + 1), + 2):
             if num % i == 0:
                 return False
         return True
 
-    def __str__(self):
-        return str(self.__nums)
-
 
 if __name__ == '__main__':
-    pr1 = list(PrimeIterator(15))
-    print(pr1)
+    num_limit = int(input('Introduce hasta qué valor desea sacar la lista de números primos: '))
+    for p in PrimeIterator(num_limit):
+        print(p, end=" ")
+    print()

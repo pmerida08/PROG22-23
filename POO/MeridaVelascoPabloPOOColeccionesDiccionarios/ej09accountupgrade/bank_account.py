@@ -13,6 +13,7 @@ import random
 from typeguard import typechecked
 from movement import Deposit, Withdraw, TransferIssued, TransferReceived, Movement
 
+
 @typechecked
 class BankAccount:
     __registered_accounts = []
@@ -22,7 +23,7 @@ class BankAccount:
             raise ValueError("No puede crearse una cuenta bancaria con saldo negativo")
         self.__number = BankAccount.__create_number_account()
         if balance > 0:
-            self.__movements = [Deposit(balance, f"Creación de la cuenta con ingreso de: {balance:.2f} €")]
+            self.__movements = [Deposit(balance)]
         else:
             self.__movements = []
 
@@ -66,7 +67,7 @@ class BankAccount:
         self.__append(TransferIssued(money, other.__number))
         other.__append(TransferReceived(money, self.__number))
 
-    def __append(self, m: Movement):  # la lista de movimientos debe estar ordenada por fecha
+    def __append(self, m: Movement):
         self.__movements = sorted(self.__movements + [m], key=lambda m: m.date_time)
 
     @property

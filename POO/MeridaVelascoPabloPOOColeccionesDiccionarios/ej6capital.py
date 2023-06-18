@@ -25,6 +25,7 @@ while True:
     if country in country_and_capitals:
         print(f'La capital de {country} es {country_and_capitals[country]}')
     else:
-        capital_new_city = input('Oh, no logro encontrar la ciudad, ¿me podrías decir cuál es su capital para añadirla a la lista?: ')
+        capital_new_city = input('Oh, no logro encontrar la ciudad, ¿me podrías decir cuál es su capital para '
+         'añadirla a la lista?: ')
         country_and_capitals[country] = capital_new_city
         print('Ciudad y capital añadida.')

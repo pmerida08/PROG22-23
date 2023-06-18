@@ -50,17 +50,3 @@ class Deck:
 
     def __repr__(self):
         return repr(self.__cards)
-
-
-if __name__ == '__main__':
-    cards_ = [
-        Card("♣", "4"),
-        Card("♣", "6"),
-        Card("♡", "2"),
-        Card("♡", "3")
-    ]
-
-    deck1 = Deck(cards_)
-    deck1.shuffle()
-    print(deck1)
-

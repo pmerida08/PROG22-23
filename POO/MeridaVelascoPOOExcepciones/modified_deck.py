@@ -4,6 +4,18 @@ from typeguard import typechecked
 from POO.MeridaVelascoPabloPOOtanda3.ej14deck.card import Card
 
 
+@typechecked
+class NotEnoughCards(Exception):
+    def __init__(self):
+        super().__init__("No hay cartas suficientes para repartir")
+
+
+class PositiveAmount(Exception):
+    def __init__(self, amount):
+        super().__init__(f"El número de cartas a repartir (has intentado introducir {amount}) "
+                        f"no es válido tiene que ser positivo")
+
+
 class Deck:
 
     def __init__(self, cards: List[Card]):
@@ -15,9 +27,9 @@ class Deck:
 
     def deal(self, player, number: int):
         if number < 0:
-            raise PositiveAmount("El número de cartas a repartir tiene que ser positivo")
+            raise PositiveAmount(number)
         if number > len(self.__cards):
-            raise NotEnoughCards("No hay cartas suficientes para repartir")
+            raise NotEnoughCards()
 
         cards_to_deal = self.__cards[:number]
         player.receives(cards_to_deal)
@@ -33,13 +45,3 @@ class Deck:
 
     def __repr__(self):
         return repr(self.__cards)
-
-
-@typechecked
-
-class NotEnoughCards(Exception):
-    pass
-
-
-class PositiveAmount(Exception):
-    pass
