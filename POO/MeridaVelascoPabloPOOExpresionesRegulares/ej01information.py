@@ -44,6 +44,9 @@ def extract_info(file, info):
 
 
 if __name__ == '__main__':
-    name_file = sys.argv[1]
-    info_type = sys.argv[2]
-    extract_info(name_file, info_type)
+    try:
+        name_file = sys.argv[1]
+        info_type = sys.argv[2]
+        extract_info(name_file, info_type)
+    except IndexError:
+        print('La cantidad de parámetros que se le pasa al programa al ejecutarse es incorrecta.')

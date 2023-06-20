@@ -14,22 +14,25 @@ import sys
 LINES = 11
 wrapped_lines = []
 
-file2 = sys.argv[1]
-file1 = sys.argv[2]
+try:
+    file2 = sys.argv[1]
+    file1 = sys.argv[2]
 
-for i in range(1, LINES):
-    if i % 2 == 0:
-        with open(file2, 'r+t', encoding='utf-8') as file:
-            file.seek(0, 2)
-            str_ = f'Esta es la línea {i}\n'
-            file.write(str_)
-            wrapped_lines.append(str_)
-    else:
-        with open(file1, 'r+t', encoding='utf-8') as file:
-            file.seek(0, 2)
-            str_ = f'Esta es la línea {i}\n'
-            file.write(str_)
-            wrapped_lines.append(str_)
+    for i in range(1, LINES):
+        if i % 2 == 0:
+            with open(file2, 'r+t', encoding='utf-8') as file:
+                file.seek(0, 2)
+                str_ = f'Esta es la línea {i}\n'
+                file.write(str_)
+                wrapped_lines.append(str_)
+        else:
+            with open(file1, 'r+t', encoding='utf-8') as file:
+                file.seek(0, 2)
+                str_ = f'Esta es la línea {i}\n'
+                file.write(str_)
+                wrapped_lines.append(str_)
 
-with open('finaltext.txt', 'r+t', encoding='utf-8') as file:
-    file.writelines(wrapped_lines)
+    with open('finaltext.txt', 'r+t', encoding='utf-8') as file:
+        file.writelines(wrapped_lines)
+except IndexError:
+    print('La cantidad de parámetros que se le pasa al programa al ejecutarse es incorrecta.')

@@ -21,50 +21,50 @@ class Fraction:
 
         mcd = math.gcd(numerator, denominator)
 
-        self.__numerador = numerator // mcd
-        self.__denominador = denominator // mcd
+        self.__numerator = numerator // mcd
+        self.__denominator = denominator // mcd
 
     @property
-    def numerador(self):
-        return self.__numerador
+    def numerator(self):
+        return self.__numerator
 
     @property
-    def denominador(self):
-        return self.__denominador
+    def denominator(self):
+        return self.__denominator
 
     @property
     def result(self):
-        return self.numerador / self.denominador
+        return self.numerator / self.denominator
 
     def __add__(self, other):
-        mcm = (self.denominador * other.denominador)
+        mcm = (self.denominator * other.denominator)
         if isinstance(other, Fraction):
-            return Fraction(numerator=self.numerador // mcm + other.numerador // mcm, denominator=mcm)
-        return Fraction(numerator=self.numerador // mcm + other // mcm, denominator=mcm)
+            return Fraction(numerator=self.numerator // mcm + other.numerator // mcm, denominator=mcm)
+        return Fraction(numerator=self.numerator // mcm + other // mcm, denominator=mcm)
 
     def __sub__(self, other):
-        mcm = (self.numerador * self.denominador) // math.gcd(self.numerador, self.denominador)
+        mcm = (self.numerator * self.denominator) // math.gcd(self.numerator, self.denominator)
         if isinstance(other, Fraction):
-            return Fraction(numerator=self.numerador // mcm - other.numerador // mcm, denominator=mcm)
-        return Fraction(numerator=self.numerador // mcm - other // mcm, denominator=mcm)
+            return Fraction(numerator=self.numerator // mcm - other.numerator // mcm, denominator=mcm)
+        return Fraction(numerator=self.numerator // mcm - other // mcm, denominator=mcm)
 
     def __mul__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerator=self.numerador * other.numerador,
-                            denominator=self.denominador * other.denominador)
-        return Fraction(numerator=self.numerador * other, denominator=self.denominador)
+            return Fraction(numerator=self.numerator * other.numerator,
+                            denominator=self.denominator * other.denominator)
+        return Fraction(numerator=self.numerator * other, denominator=self.denominator)
 
     def __rmul__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerator=self.numerador * other.numerador,
-                            denominator=self.denominador * other.denominador)
-        return Fraction(numerator=self.numerador * other, denominator=self.denominador)
+            return Fraction(numerator=self.numerator * other.numerator,
+                            denominator=self.denominator * other.denominator)
+        return Fraction(numerator=self.numerator * other, denominator=self.denominator)
 
     def __truediv__(self, other):
         if isinstance(other, Fraction):
-            return Fraction(numerator=self.numerador * other.denominador,
-                            denominator=self.denominador * other.numerador)
-        return Fraction(numerator=self.numerador, denominator=self.denominador * other)
+            return Fraction(numerator=self.numerator * other.denominator,
+                            denominator=self.denominator * other.numerator)
+        return Fraction(numerator=self.numerator, denominator=self.denominator * other)
 
     def __repr__(self):
-        return f"{self.__class__.__name__}: {self.__numerador} / {self.__denominador}"
+        return f"{self.__class__.__name__}: {self.__numerator} / {self.__denominator}"

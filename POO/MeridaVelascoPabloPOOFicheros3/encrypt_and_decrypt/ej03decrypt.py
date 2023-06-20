@@ -16,6 +16,13 @@ resultado en otro archivo, que también pasamos como parámetro, de manera que:
 
 import sys
 
+LEN_ALPHABET = 26
+
+
+class EncryptLenValueError(Exception):
+    def __init__(self):
+        super().__init__('La clave no puede ser mayor que 26')
+
 
 def decrypt(encrypted_msg, keyname):
     decrypted_msg = ""
@@ -23,22 +30,31 @@ def decrypt(encrypted_msg, keyname):
         if char.isalpha():
             new_char_code = ord(char.upper()) - keyname
             if new_char_code < ord('A'):
-                new_char_code += 26
+                new_char_code += LEN_ALPHABET
             decrypted_msg += chr(new_char_code)
         else:
             decrypted_msg += char
     return decrypted_msg
 
 
-if len(sys.argv) not in (2, 3):
-    print("Uso: python decrypt.py fichero_encriptado [fichero_destino]")
+if len(sys.argv) > 3:
+    print("Error: número de parámetros incorrecto.")
     sys.exit(1)
 
-key = int(input("Introduce la clave de desencriptación: "))
+try:
+    key = int(input("Introduce la clave de desencriptación: "))
+    if key > 26:
+        raise EncryptLenValueError()
+except ValueError:
+    print("Error: la clave debe ser un número entero.")
+    sys.exit(1)
+except EncryptLenValueError:
+    print("Error: la clave no puede ser mayor que 26.")
+    sys.exit(1)
 
 try:
     with open(sys.argv[1], "r") as f:
-        encrypted_message = f.read()
+        encrypted = f.read()
 except FileNotFoundError:
     print("Error: el archivo encriptado no existe")
     sys.exit(2)
@@ -46,21 +62,19 @@ except IOError:
     print("Error: no se puede abrir el archivo encriptado")
     sys.exit(2)
 
-decrypted_message = decrypt(encrypted_message, key)
 
-if len(sys.argv) == 2:
-    answer = input("El archivo encriptado será sobrescrito. ¿Desea continuar? (s/n)")
-    if answer.lower() != "s":
-        sys.exit()
+decrypted_message = decrypt(encrypted, key)
 
 try:
+    if sys.argv[1] == sys.argv[2]:
+        answer = input("El archivo origen será sobrescrito. ¿Desea continuar? (s/n)")
+        if answer.lower() != "s":
+            sys.exit()
+
     with open(sys.argv[2], "w") as f:
-        f.write(decrypted_message)
-except IndexError:
-    with open(sys.argv[1], "w") as f:
         f.write(decrypted_message)
 except IOError:
     print("Error: no se puede escribir en el archivo destino")
     sys.exit(3)
 
-print("Archivo desencriptado con éxito.")
+print("Archivo encriptado con éxito.")

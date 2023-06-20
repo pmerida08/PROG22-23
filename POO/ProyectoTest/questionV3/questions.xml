@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<test>
+	<question  name="P1" base_score="1">
+		<statement>¿Qué son los mamíferos?</statement>
+		<options>
+			<option points="1">Seres vivos</option>
+			<option points="-0.25">Plantas</option>
+			<option points="-0.25">Insectos</option>
+			<option points="-0.25">Partido político</option>
+		</options>
+	</question>
+
+	<question  name="P2" base_score="1">
+		<statement>¿En qué meridiano está España?</statement>
+		<options>
+			<option points="-0.25">M. magnético</option>
+			<option points="1">M. de Greenwich</option>
+			<option points="-0.25">M. cero</option>
+			<option points="-0.25">Ecuador</option>
+		</options>
+	</question>
+
+	<question  name="P3" base_score="1">
+		<statement>¿Cuál es la capital de Marruecos?</statement>
+		<options>
+			<option points="-0.25">Ceuta</option>
+			<option points="-0.25">Melilla</option>
+			<option points="1">Rabat</option>
+			<option points="-0.25">Marrakech</option>
+		</options>
+	</question>
+
+	<question name="P4"  base_score="1">
+		<statement>¿En qué año murió Francisco Franco?</statement>
+		<options>
+			<option points="-0.25">1976</option>
+			<option points="-0.25">1973</option>
+			<option points="-0.25">1978</option>
+			<option points="1">1975</option>
+		</options>
+	</question>
+
+	<question name="P5" base_score="1">
+		<statement>¿Cuál fue el primer programador/a?</statement>
+		<options>
+			<option points="1">Ada Lovelace</option>
+			<option points="-0.25">von Neumann</option>
+			<option points="-0.25">Peter Griffin</option>
+			<option points="-0.25">Bill Gates</option>
+		</options>
+	</question>
+</test>

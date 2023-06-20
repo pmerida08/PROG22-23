@@ -1,0 +1,48 @@
+[
+  {
+    "name": "P1",
+    "base_score": 2,
+    "statement": "Capital de Espania",
+    "options": [
+      {
+        "option": "Madrid",
+        "weight": "2"
+      },
+      {
+        "option": "Cantabria",
+        "weight": "-0.25"
+      },
+      {
+        "option": "C\u00f3rdoba",
+        "weight": "-0.25"
+      },
+      {
+        "option": "CAstilla",
+        "weight": "-0.25"
+      }
+    ]
+  },
+  {
+    "name": "P2",
+    "base_score": 2,
+    "statement": "Primer programa",
+    "options": [
+      {
+        "option": "Hola mundo",
+        "weight": "2"
+      },
+      {
+        "option": "Hola que tal",
+        "weight": "-0.25"
+      },
+      {
+        "option": "Que tal",
+        "weight": "-0.25"
+      },
+      {
+        "option": "Ya",
+        "weight": "-0.25"
+      }
+    ]
+  }
+]

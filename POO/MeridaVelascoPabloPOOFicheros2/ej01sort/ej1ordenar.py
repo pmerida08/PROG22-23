@@ -4,18 +4,27 @@ El nombre del fichero que contiene las palabras se debe pasar como argumento en 
 fichero resultado debe ser el mismo que el original añadiendo la coletilla sort, por ejemplo palabras_sort.txt.
 Suponemos que cada palabra ocupa una línea.
 """
+import sys
+
 WORDS = 5
 
 listing_words = []
 sorted_words = []
 
-with open('ej1ordenar.txt', 'rt', encoding='utf-8') as file:
-    for _ in range(WORDS):
-        line = file.readline().rstrip()
-        listing_words.append(line)
+try:
+    origin_file = sys.argv[1]
+    sorted_file = sys.argv[2]
 
-sorted_words = sorted(listing_words)
+    with open(origin_file, 'rt', encoding='utf-8') as file:
+        for _ in range(WORDS):
+            line = file.readline().rstrip()
+            listing_words.append(line)
 
-with open('ej1ordenar_sorted.txt', 'r+t', encoding='utf-8') as file:
-    for word in sorted_words:
-        file.write(word + '\n')
+    sorted_words = sorted(listing_words)
+
+    with open(sorted_file, 'r+t', encoding='utf-8') as file:
+        for word in sorted_words:
+            file.write(word + '\n')
+
+except IndexError:
+    print('El numero de argumentos es erróneo.')

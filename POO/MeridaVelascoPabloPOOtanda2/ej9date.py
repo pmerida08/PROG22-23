@@ -46,7 +46,7 @@ class Date:
     def copy(self):
         return self.__class__(self.__day, self.__month, self.__year)
 
-    def operate_days(self, days: int):
+    def sum_days(self, days: int):
         self.__day += days
         while True:
             leap_year = self.__year % 4 == 0 and (self.__year % 100 != 0 or self.__year % 400 == 0)
@@ -69,6 +69,31 @@ class Date:
                 continue
             elif self.__month > 12:
                 self.__year += 1
+                continue
+            break
+
+    def subtract_days(self, days: int):
+        self.__day -= days
+        while True:
+            leap_year = self.__year % 4 == 0 and (self.__year % 100 != 0 or self.__year % 400 == 0)
+            if self.__day < 1:
+                if self.__month == 3:
+                    if leap_year:
+                        self.__month -= 1
+                        self.__day += 29
+                    else:
+                        self.__month -= 1
+                        self.__day += 28
+                elif self.__month in (5, 7, 10, 12):
+                    self.__month -= 1
+                    self.__day += 30
+                else:
+                    self.__month -= 1
+                    self.__day += 31
+
+                if self.__month < 1:
+                    self.__year -= 1
+                    self.__month = 12
                 continue
             break
 

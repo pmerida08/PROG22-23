@@ -6,6 +6,7 @@ Curso: 1º DAW A
 Fecha: 05/04/2023
 """
 
+
 def is_prime(number):
     if number <= 1:
         return False
@@ -17,12 +18,13 @@ def is_prime(number):
                 return False
         return True
 
+
 primes_numbers = []
 
 for n in range(1, 501):
     if is_prime(n):
         primes_numbers.append(n)
 
-with open('D:\Programas\PROG\POO\MeridaVelascoPabloPOOFicheros\ej01primos\primos.txt', 'w') as file:
+with open('primos.txt', 'w') as file:
     for line in primes_numbers:
         file.write(str(line) + '\n')

@@ -17,80 +17,86 @@ Crea los getters y setters mediante propiedades y métodos para:
 from typeguard import typechecked
 
 
+@typechecked
 class Duration:
 
-    @typechecked
-    def __init__(self, hour: int = 0, minutes: int = 0, seconds: int = 0):
+    def __init__(self, hours, minutes=None, seconds=None):
+        if isinstance(hours, Duration) and (minutes, seconds) == (None, None):
+            other = hours
+            self.__hours, self.__minutes, self.__seconds = other.hours, other.minutes, other.seconds
+        elif isinstance(hours, int) and isinstance(minutes, int) and isinstance(seconds, int):
+            self.__hours, self.__minutes, self.__seconds = hours, minutes, seconds
+            self.__normalize()
+        else:
+            raise TypeError("Un objeto Duration se construye con tres enteros o con otro objeto Duration")
 
-        while True:
-            if seconds < 0:
-                seconds = 60 - (-seconds)
-                minutes -= 1
-            elif minutes < 0:
-                minutes = 60 - (-minutes)
-                hour -= 1
+    def __total_seconds(self):
+        return self.hours * 3600 + self.minutes * 60 + self.seconds
 
-            if seconds > 59:
-                minutes += 1
-                seconds -= 60
-            elif minutes > 59:
-                hour += 1
-                minutes -= 60
-            else:
-                break
-        self.__hour = hour
-        self.__minutes = minutes
-        self.__seconds = seconds
+    def __normalize(self):
+        seconds = self.__total_seconds()
+        if seconds < 0:
+            raise ValueError("No puede haber duraciones de tiempo negativas")
+        self.__hours = seconds // 3600
+        self.__minutes = seconds % 3600 // 60
+        self.__seconds = seconds % 3600 % 60
 
     @property
-    def hour(self):
-        return self.__hour
+    def hours(self):
+        return self.__hours
 
-    @hour.setter
-    def hour(self, value):
-        self.__hour = value
+    @hours.setter
+    def hours(self, value: int):
+        new_duration = Duration(value, self.minutes, self.seconds)
+        self.__hours, self.__minutes, self.__seconds = new_duration.hours, new_duration.minutes, new_duration.seconds
 
     @property
     def minutes(self):
         return self.__minutes
 
     @minutes.setter
-    def minutes(self, value):
-        self.__minutes = value
+    def minutes(self, value: int):
+        new_duration = Duration(self.hours, value, self.seconds)
+        self.__hours, self.__minutes, self.__seconds = new_duration.hours, new_duration.minutes, new_duration.seconds
 
     @property
     def seconds(self):
         return self.__seconds
 
     @seconds.setter
-    def seconds(self, value):
-        self.__seconds = value
-
-    @classmethod
-    def from_duration(cls, other: 'Duration'):
-        new_duration = cls()
-        new_duration.__hour = other.__hour
-        new_duration.__minutes = other.__minutes
-        new_duration.__seconds = other.__seconds
-        return new_duration
+    def seconds(self, value: int):
+        new_duration = Duration(self.hours, self.minutes, value)
+        self.__hours, self.__minutes, self.__seconds = new_duration.hours, new_duration.minutes, new_duration.seconds
 
     def in_secs(self):
         return self.hour * 3600 + self.minutes * 60 + self.seconds
 
-    def __add__(self, other):
-        if isinstance(other, Duration):
-            summ = Duration(self.hour + other.hour, self.minutes + other.minutes, self.seconds + other.seconds)
-            return summ
-        return Duration(seconds=self.in_secs() + other)
+    def __add__(self, other: 'Duration'):
+        return Duration(self.hours + other.hours, self.minutes + other.minutes, self.seconds + other.seconds)
 
-    def __sub__(self, other):
-        if isinstance(other, Duration):
-            sub = Duration(self.hour - other.hour, self.minutes - other.minutes, self.seconds - other.seconds)
-            return sub
-        return Duration(seconds=self.in_secs() + other)
+    def __sub__(self, other: 'Duration'):
+        return Duration(self.hours - other.hours, self.minutes - other.minutes, self.seconds - other.seconds)
+
+    def __eq__(self, other: 'Duration'):
+        return (self.hours, self.minutes, self.seconds) == (other.hours, other.minutes, other.seconds)
+
+    def __ne__(self, other: 'Duration'):
+        return not self == other
+
+    def __lt__(self, other: 'Duration'):
+        return self.__total_seconds() < other.__total_seconds()
+
+    def __le__(self, other: 'Duration'):
+        return self.__total_seconds() <= other.__total_seconds()
+
+    def __gt__(self, other: 'Duration'):
+        return not self <= other
+
+    def __ge__(self, other: 'Duration'):
+        return not self < other
 
     def __str__(self):
-        return f"{self.__hour} horas, {self.__minutes} minutos, {self.__seconds} segundos"
+        return f"{self.hours}h {self.minutes}m {self.seconds}s"
 
     def __repr__(self):
-        return f"{self.__hour} horas, {self.__minutes} minutos, {self.__seconds} segundos"
+        return f"{self.__class__.__name__}({self.hours}, {self.minutes}, {self.seconds})"

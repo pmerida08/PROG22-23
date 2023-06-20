@@ -11,15 +11,11 @@ from typeguard import typechecked
 class PrimeIterator(Iterator):
 
     def __init__(self, last_number: int = 20):
-        num_primes = self.__sieve_eratosthenes(last_number)
+        num_primes = self.__sieve_erasthothenes(last_number)
         self.__primes_iterator = iter(num_primes)
 
     @staticmethod
-    def is_mult(num, mult):
-        return num % mult == 0
-
-    @staticmethod
-    def __sieve_eratosthenes(stop):
+    def __sieve_erasthothenes(stop):
         primes = list(range(2, stop + 1))
         index = 0
 
@@ -27,7 +23,6 @@ class PrimeIterator(Iterator):
             for num in primes[index+1:]:
                 if num % primes[index] == 0:
                     primes.remove(num)
-
             index += 1
         return primes
 

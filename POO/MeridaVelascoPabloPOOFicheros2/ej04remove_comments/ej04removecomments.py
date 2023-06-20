@@ -14,11 +14,12 @@ Crea un fichero con nombre HolaV2.java que contiene el código de HolaV1.java pe
 """
 import sys
 
-origin_file = sys.argv[1]
-new_file = sys.argv[2]
+try:
+    origin_file = sys.argv[1]
+    new_file = sys.argv[2]
+    with open(origin_file, 'r', encoding='utf-8') as file:
 
-with open(origin_file, 'r', encoding='utf-8') as file:
-    file_str = file.read()
+        file_str = file.read()
 
     while True:
         n1 = file_str.find('//')
@@ -38,7 +39,10 @@ with open(origin_file, 'r', encoding='utf-8') as file:
         if n2 == -1:
             file_str = file_str[:n1]
         else:
-            file_str = file_str[:n1] + file_str[n2:]
+            file_str = file_str[:n1] + file_str[n2+2:]
 
-with open(new_file, 'w+', encoding='utf-8') as file:
-    new_str = file.write(file_str)
+    with open(new_file, 'w+', encoding='utf-8') as file:
+        new_str = file.write(file_str)
+
+except IndexError:
+    print('La cantidad de parámetros que se le pasa al programa al ejecutarse es incorrecta.')
