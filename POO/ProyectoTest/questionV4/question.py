@@ -45,6 +45,6 @@ class Question:
         return self.__base_pointed
 
     def get_points(self, response):
-        if response > len(self.__elections) or response <= 0:
+        if response > len(self.__elections) or response < 0:
             raise QuestionResponseError(response)
         return self.__elections[response - 1][1]
